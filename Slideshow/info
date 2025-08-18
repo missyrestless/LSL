@@ -1,0 +1,14 @@
+Slideshow Information
+______________________________
+
+
+ • Add in up to 100 texures. Script will automatically cycle through images.
+
+ • Add in a landmark and/or notecard to be given away on Touch. 
+
+ • Object owner can Touch to see how many have been given away since object was rezzed or reset last.
+
+
+Edit the Slideshow script to change which face texture shows.  Default is face 0.
+
+Tip:  You can use the Slideshow Script on its own, without the Menu/Giver Script.  It will not give landmark or notecards without it, and you'll only be able to change timer interval by editing variable at top of slideshow script, rather than touch menu.

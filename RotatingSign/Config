@@ -1,0 +1,155 @@
+USE_PARTICLES = FALSE
+TOUCH_ENABLED = FALSE
+INFORM_ON_ARRIVAL = FALSE
+HOVER_TEXT = FALSE
+GIVE_NOTECARD = FALSE
+GIVE_LANDMARK = FALSE
+GIVE_OBJECT = FALSE
+GIVE_TEXTURE = FALSE
+GIVE_SOUND = FALSE
+GIVE_CLOTHING = FALSE
+GIVE_BODYPART = FALSE
+GIVE_ANIMATION = FALSE
+GIVE_GESTURE = FALSE
+GIVE_SCRIPT = FALSE
+SET_SCALE = FALSE
+SET_FRONT_BACK = FALSE
+END_SETTINGS
+#
+# Configuration notecard for the Rotating Sign script.
+# Settings are specified in the format "<name> = <value>"
+# DO NOT use "=" in either the <name> or <value>
+# Place any uncommented configuration settings above the END_SETTINGS
+# line above. Lines below END_SETTINGS will not be read and are here
+# for information and help configuring.
+#
+# These comments can be left in the notecard without adversely effecting
+# performance as the script stops reading the notecard when it hits the
+# END_SETTINGS line so we can put as many comments here as we want.
+#
+##########################################################################
+#
+# Whether to rotate about the z-axis
+#ROTATE = TRUE
+#
+# Whether to display particle effects
+#USE_PARTICLES = TRUE
+#
+# Duration of particle displays in seconds.
+# To disable particle displays, set this to 0.0
+#PARTICLE_DURATION = 30.0
+#
+# Interval between particle displays in seconds
+#PARTICLE_INTERVAL = 120.0
+#
+# Whether clicking on the sign will trigger deliver of items to the toucher
+#TOUCH_ENABLED = TRUE
+#
+# Whether to scan the area for new arrivals and automatically deliver items
+# Note, this should be used with caution - your guests will automatically
+# receive the delivery items without touching the sign.
+#AUTO_DELIVER = FALSE
+#
+# If auto-delivery is enabled, whether to just tell the new arrival to touch
+# me for deliver of the items. If FALSE, then items will be sent automatically.
+#INFORM_ON_ARRIVAL = TRUE
+#
+# If auto-delivery is enabled, the interval at which to scan for new arrivals
+#SCAN_INTERVAL = 60.0
+#
+# If auto-delivery is enabled, the range over which to scan for new arrivals
+#RANGE = 20.0
+#
+# If you want to display a group invitation url, set this to the group's key
+#GROUP_KEY =
+#
+# The text to display preceding the group invitation url
+#GROUP_MESSAGE = Click here to join our group:
+#
+# Whether to display the hover text
+#HOVER_TEXT = TRUE
+#
+# Whether to set the width, height, and depth of the sign
+# SET_SCALE = FALSE
+#
+# Whether to set the front and back textures of the sign
+# SET_FRONT_BACK = FALSE
+#
+# Depth of the sign in meters
+#DEPTH = 0.01
+#
+# Width of the sign in meters
+#WIDTH = 4.0
+#
+# Height of the sign in meters
+#HEIGHT = 8.4
+#
+# Texture to display on front of sign - can be the name of a texture in the
+# sign's inventory or a texture uuid
+#TEXTURE_FRONT = 42cee9e5-fd85-636d-81f6-f8fb4141d921
+#
+# Texture to display on back of sign - can be the name of a texture in the
+# sign's inventory or a texture uuid
+#TEXTURE_BACK = c37cf05b-d1d4-cea9-20a0-fcaf389e1961
+#
+# If TRUE, deliver a notecard when touched. If FALSE, do not
+#GIVE_NOTECARD = TRUE
+#
+# If TRUE, deliver a landmark when touched. If FALSE, do not
+#GIVE_LANDMARK = TRUE
+#
+# If TRUE, deliver an object when touched. If FALSE, do not
+#GIVE_OBJECT = TRUE
+#
+# If TRUE, deliver a texture when touched. If FALSE, do not
+#GIVE_TEXTURE = TRUE
+#
+# If TRUE, deliver a sound when touched. If FALSE, do not
+#GIVE_SOUND = TRUE
+#
+# If TRUE, deliver a clothing item when touched. If FALSE, do not
+#GIVE_CLOTHING = TRUE
+#
+# If TRUE, deliver a body part when touched. If FALSE, do not
+#GIVE_BODYPART = TRUE
+#
+# If TRUE, deliver an animation when touched. If FALSE, do not
+#GIVE_ANIMATION = TRUE
+#
+# If TRUE, deliver a gesture when touched. If FALSE, do not
+#GIVE_GESTURE = TRUE
+#
+# If TRUE, deliver a script when touched. If FALSE, do not
+#GIVE_SCRIPT = TRUE
+#
+# Name of notecard to deliver. If not set, deliver first notecard in inventory
+# that is not the Config notecard
+#NOTECARD =
+#
+# Name of landmark to deliver. If not set, deliver first landmark in inventory
+#LANDMARK =
+#
+# Name of object to deliver. If not set, deliver first object in inventory
+#OBJECT =
+#
+# Name of texture to deliver. If not set, deliver first texture in inventory
+#TEXTURE =
+#
+# Name of sound to deliver. If not set, deliver first sound in inventory
+#SOUND =
+#
+# Name of clothing item to deliver. If not set, deliver first clothing item
+#CLOTHING =
+#
+# Name of body part to deliver. If not set, deliver first body part in inventory
+#BODYPART =
+#
+# Name of animation to deliver. If not set, deliver first animation in inventory
+#ANIMATION =
+#
+# Name of gesture to deliver. If not set, deliver first gesture in inventory
+#GESTURE =
+#
+# Name of script to deliver. If not set, deliver first script in inventory
+# that is not the Rotating Sign script
+#SCRIPT =

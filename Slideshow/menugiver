@@ -1,0 +1,123 @@
+
+integer given;
+integer thetimer = 10;
+
+list MENU_MAIN = ["Timer", "Reset"];
+list timerlist = ["90","120","300","30","45","60","0", "10", "15"];
+
+integer menu_handler;
+integer menu_channel;
+menu(key user,string title,list buttons)
+{
+    llListenRemove(menu_handler);
+    menu_channel = (integer)(llFrand(99999.0) * -1);
+    menu_handler = llListen(menu_channel,"","","");
+    llDialog(user,title,buttons,menu_channel);
+    llSetTimerEvent(45.0);
+}
+
+theownermenu()
+{  
+    list tempmenu = MENU_MAIN;
+    string temptext = "\n" + (string)given + " have been given away since last object reset. \n \nTimer Interval: " + (string)thetimer + " seconds";
+
+    if (llGetInventoryNumber(INVENTORY_NOTECARD) > 0)
+    {
+        tempmenu += ["Notecard"];
+    }
+    if (llGetInventoryNumber(INVENTORY_LANDMARK) > 0)
+    {
+        tempmenu += ["Landmark"];
+    }
+    if ((llGetInventoryNumber(INVENTORY_LANDMARK) == 0) && (llGetInventoryNumber(INVENTORY_NOTECARD) == 0)) //LM no - Note no
+    {
+        temptext += "\n \nNOTICE: You can add a note and/or landmark into object to be given away on Touch.";
+    }
+    menu(llGetOwner(), temptext, tempmenu);
+}
+
+default
+{
+    on_rez(integer start_param)
+    {
+        llResetScript();
+    }
+    
+    state_entry()
+    {
+        given = 0;
+        llOwnerSay("You may have up to 100 textures in object for slideshow.\nBe sure to only have one landmark and/or one notecard in inventory to be given on touch.");
+        llOwnerSay("Touch for Owner Controls and more information.");
+    }
+    
+    link_message(integer sender_num, integer num, string str, key id)
+    {
+        if ((str == "timerinterval") || (str == "timernumber")) // from main script
+        {
+            thetimer = num;
+        }
+        else if (str == "resetall")
+        {
+            llResetScript();
+        }
+    }
+
+    touch_start(integer total_number)
+    {
+        if ( llDetectedKey(0) != llGetOwner() )
+        {
+            given = given + 1;
+            if (llGetInventoryNumber(INVENTORY_LANDMARK) > 0)
+            {
+                llGiveInventory(llDetectedKey(0), llGetInventoryName(INVENTORY_LANDMARK, 0));
+            }
+            if (llGetInventoryNumber(INVENTORY_NOTECARD) > 0)
+            {
+                llGiveInventory(llDetectedKey(0), llGetInventoryName(INVENTORY_NOTECARD, 0));
+            }   
+        }
+        else if ( llDetectedKey(0) == llGetOwner() )
+        {
+            llOwnerSay((string)given + " have been given away since this object was rezzed.");
+            theownermenu();
+        }
+    }
+    
+    timer() //VERY IMPORTANT menu timeout
+    {
+        llListenRemove(menu_handler); //close listen
+        llSetTimerEvent(0); //stop timeout timer
+    }
+    
+    listen(integer channel,string name,key id,string message)
+    {
+        if (channel == menu_channel) 
+        {
+            llListenRemove(menu_handler); //close listen
+            llSetTimerEvent(0); //stop timeout timer
+            if (message == "Timer")
+            {
+                menu(llGetOwner(), "\nSelect a timer amount below or Ignore.\n \nTextures will change at this interval.\n \nChoose 0 for no texture change.", timerlist);
+            }
+            else if (message == "Reset")
+            {
+                llOwnerSay("Resetting.");
+                llMessageLinked(LINK_SET, 0, "resetall", llGetOwner());
+            }
+            else if (message == "Landmark")
+            {
+                llGiveInventory(llGetOwner(), llGetInventoryName(INVENTORY_LANDMARK, 0));
+            }
+            else if (message == "Notecard")
+            {
+                llGiveInventory(llGetOwner(), llGetInventoryName(INVENTORY_NOTECARD, 0));
+            }
+            else //number for timer
+            {
+                llMessageLinked(LINK_SET, (integer)message, "timernumber", llGetOwner());
+                thetimer = (integer)message;
+                llSleep(0.5);
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# Private scripts, do not add or commit
+Private/
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store

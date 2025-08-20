@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+#
+
+convert -geometry 256x192! Anya-LL-256x192.jpg Anya.jpg
+convert -geometry 256x192! Easy-LR-256x186.jpg Easy.jpg
+convert -geometry 256x192! Misty-UL-256x183.jpg Misty.jpg
+convert -geometry 256x192! Monica-UR-256x192.jpg Monica.jpg
+montage -border 0x0+0+0 Misty.jpg Monica.jpg Anya.jpg Easy.jpg -geometry 256x192+0+0 escorts.jpg

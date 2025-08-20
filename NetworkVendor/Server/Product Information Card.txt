@@ -1,0 +1,19 @@
+
+1.  Rez the server in a safe location
+2.  Add your products to the contents of the server
+3.  Edit the server notecard: SERVER_SETTINGS as desired
+4.  Edit the server notecard: PRODUCTS_LIST to include your products (CategoryNum)#(SubCategoryNum)#(Price)#(Inventory Name)#(Texture UUID)
+     (in my version there are 4 subcategories to a category, in the FOSSL system the category and subcategory numbering always start at 0)
+5.  If you are going to have a separate notecard for each product, they should have the same name as the product with ' Info' at the end
+6.  Note or copy the Server UUID
+7.  Rez a copy of the vendor
+8.  Edit the vendor notecard: CLIENT_SETTINGS ..
+     (a) Include the server's UUID at server=XXX
+     (b) include your av ID at owner=XXX
+     (c) add your email (if you want the board to send you email advice on sales)
+     (d) if you want the vendor to give a separate info card for each product, change separate info= 1, otherwise change info card= Your Product Card
+9.  Edit the vendor and select 'edit linked parts' - click the largest prim (ie, the 'pay prim').
+10. Edit the pay prim notecard: BUY_SETTINGS .. this is only relevant if you will be giving your vendors to other sellers, here you can set the split between yourself and the vendor owner.  If you decide to to this, make sure this notecard is 'no modify' AND the CLIENT_SETTINGS notecard is 'no modify'.  Its your choice whether to make the whole -vendor 'no modify' however its usually safer to leave it modifiable so that the owner has the ability to 'reset scripts' if necessary.   
+
+For more information on this vendor system and its predecessor, the FOSSL Vendor System, see the SL Community Forums, eg: http://forums-archive.secondlife.com/54/dc/243616/1.html
+

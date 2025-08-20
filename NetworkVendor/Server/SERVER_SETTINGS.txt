@@ -1,0 +1,6 @@
+email agents = 1
+ANON ACCESS = 1
+email sales = 1
+email address = youremail@hotmail.com
+
+

@@ -1,0 +1,8 @@
+info card = Product Information Card
+separate info = 0
+buffer = 20
+email agents = 1
+server = ec244608-1e02-6ea0-b767-fb3085197a1c
+email = youremail@yourserver.com
+blog = http://your.blog.url
+marketplace = http://your.marketplace.url

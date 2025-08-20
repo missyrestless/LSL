@@ -1,0 +1,664 @@
+// Reservation - a dialog menu based reservation system
+// Version 1.2
+//
+// Copyright (c) 2011 Missy Restless
+// All rights reserved
+//
+// Created 17-Feb-2011 by Missy Restless
+//
+// Modified 24-Feb-2011 by Missy Restless - destination selection and payment
+// Modified 25-Feb-2011 by Missy Restless - payment handled by Payment script
+//
+
+string hover_text = "";
+string Day = "";
+string Time = "";
+string Dest = "";
+string Date;
+string email_address = "";
+string texture = "reservation_board";
+list Dates;
+list Weekdays = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ];
+list Times = [ "2 PM", "3 PM", "4 PM", "11 AM", "12 PM", "1 PM", "8 AM", "9 AM", "10 AM", "11 PM", "12 AM", "1 AM", "8 PM", "9 PM", "10 PM", "5 PM", "6 PM", "7 PM", "5 AM", "6 AM", "7 AM", "2 AM", "3 AM", "4 AM" ];
+list Dests = [ "Kazenojin", "Bretton", "Kotora" ];
+list Prices = [ "1000", "750", "1250" ];
+integer dialog_handle = 0;
+integer elapsed = 0;
+integer defprice = 1000;
+integer refund = 0;
+integer ind_days = 0;
+integer ind_times = 0;
+key owner;
+key user_key = NULL_KEY;
+
+integer NotecardLine;
+integer Read_Config = 1;
+string CONFIG_CARD = "Config";
+key D_QueryID;
+
+// Reused strings
+string _LM = "Landmark";
+string _INFO = "Info";
+string _SELECT = ".\nSelect one of the";
+string MAIN_DIALOG_MESSAGE = "Main Menu - Select a reservation Date, Time, and Destination";
+string DATE_DIALOG_MESSAGE = "Date Menu - Select a reservation Date";
+string DEST_DIALOG_MESSAGE = "Destination Menu - Select a reservation Destination";
+string TIME_DIALOG_MESSAGE = "Time Menu - Select a reservation Hour";
+string _RESTART = "Click the reservation board again to restart your session.";
+
+string  _DialogMessage;
+integer _DialogChannel;
+list    _DialogOptions;
+integer _DialogIsRoot;
+key     _DialogUser;
+
+integer _PAGENO;
+integer _MAXPAGES;
+
+string _EXIT = "<<< Exit >>>";
+string _PREVIOUS = "<<< Prev <<<";
+string _NEXT = ">>> Next >>>";
+string _BACK = "<<< Back <<<";
+string _SPACE = " ";
+
+list _NavigationRoot = [_PREVIOUS,_SPACE,_NEXT];
+list _Navigation = [_BACK,_PREVIOUS,_NEXT];
+
+string _MAIN = "Main";
+string _DATES = "Date";
+string _TIMES = "Time";
+string _DESTS = "Destination";
+
+// List of the menus in the system
+list _NavigationMenus = [ _MAIN, _DATES, _DESTS, _TIMES ];
+
+list _NavigationStack;        // Manages the menus calling submenus
+
+ShowDialogInitial( string aMessage, list aOptions, key aAvatar ) {
+
+    _PAGENO = -1;
+    _MAXPAGES = 0;
+
+    _DialogIsRoot = ( llGetListLength(_NavigationStack) <= 1 );
+    _DialogOptions = aOptions;
+    _DialogMessage = aMessage;
+    
+    _DialogUser = aAvatar;
+    
+    ShowDialog();
+}
+
+ShowDialog() {
+    if ( ( llGetListLength(_DialogOptions) <= 12 ) && ( _DialogIsRoot ) ) {
+        llDialog(_DialogUser, _DialogMessage, _DialogOptions, _DialogChannel );
+    } else if ( ( llGetListLength(_DialogOptions) <= 11 ) && ( ! _DialogIsRoot ) ) {
+        llDialog(_DialogUser, _DialogMessage, [_BACK] + _DialogOptions, _DialogChannel );
+    } else {
+        if ( _PAGENO < 0 ) {
+            _PAGENO = 1;
+            _MAXPAGES = (llGetListLength(_DialogOptions)-1) / 9 + 1;
+        } else if ( _PAGENO == 0 ) {
+            _PAGENO = _MAXPAGES;
+        } else if ( _PAGENO > _MAXPAGES ) {
+            _PAGENO = 1;
+        }
+        
+        integer I=0;
+        list ELEMENTS = [];
+        integer START = (_PAGENO-1)*9;
+        integer END = START + 9;
+        if ( END > llGetListLength(_DialogOptions) )
+            END = llGetListLength(_DialogOptions);
+            
+        for ( I=START; I < END; I++ ) {
+            ELEMENTS += [llList2String(_DialogOptions,I)];
+        }
+
+        if ( _DialogIsRoot ) 
+            ELEMENTS = _NavigationRoot + ELEMENTS;
+        else
+            ELEMENTS = _Navigation + ELEMENTS;
+
+        llDialog(_DialogUser, _DialogMessage, ELEMENTS, _DialogChannel );
+    }
+}
+
+ReshowCurrentMenu( key aAvatarKey ) {
+    integer IDX = llGetListLength( _NavigationStack ) - 1;
+    string CurrentMenu = llList2String( _NavigationStack, IDX );
+
+    MenuStarter( CurrentMenu, aAvatarKey, FALSE );
+}
+
+PopBack( key aAvatarKey ) {
+    // Strip off current menu
+    integer IDX = llGetListLength( _NavigationStack ) - 1;
+    
+    // Get the current menu
+    string CurrentMenu = llList2String( _NavigationStack, IDX - 1);
+
+    // Strip off top and current menu.
+    // Why?  Because we re-add it with a call to MenuStarter
+    _NavigationStack = llListReplaceList( _NavigationStack, [], IDX-1, IDX );
+
+    MenuStarter( CurrentMenu, aAvatarKey, TRUE );
+}
+
+ListenHandler( string aMenu, string aButton, string aAvatarName, key aAvatarKey ) {
+    if ( aButton == _PREVIOUS ) {       // Previous Page
+        _PAGENO--;
+        ShowDialog();
+
+    } else if ( aButton == _NEXT ) {    // Previous Page
+        _PAGENO++;
+        ShowDialog();
+
+    } else if ( aButton == _SPACE ) {
+        ShowDialog();
+
+    } else if ( aButton == _BACK ) {
+        PopBack( aAvatarKey );
+
+    } else if ( llListFindList( _NavigationMenus, [aButton] ) >= 0 ) {
+        MenuStarter( aButton, aAvatarKey, TRUE );
+        
+    } else if ( MenuListen( aMenu, aButton, aAvatarName, aAvatarKey ) ) {
+        ReshowCurrentMenu( aAvatarKey );        
+    }
+}
+
+ShowMainMenu( key aAvatarKey ) {
+    _NavigationStack = [];
+    MenuStarter( _MAIN, aAvatarKey, TRUE );
+}
+
+MenuStarter( string aMenu, key aID, integer aPush ) {
+
+    string DialogMessage = MAIN_DIALOG_MESSAGE;
+    list   DialogOptions;
+
+    if ( aMenu == _MAIN ) {
+        DialogMessage = MAIN_DIALOG_MESSAGE;
+        if (llGetInventoryType(
+            llGetInventoryName(INVENTORY_LANDMARK, 0)) == 3)
+            DialogOptions = DialogOptions + [ _LM ];
+        else
+            DialogOptions = DialogOptions + [ _SPACE ];
+        DialogOptions = DialogOptions + [ _EXIT ];
+        if (llGetInventoryType(_INFO) == 7)
+            DialogOptions = DialogOptions + [ _INFO ];
+        else
+            DialogOptions = DialogOptions + [ _SPACE ];
+        if (Dest == "") {
+            DialogOptions = DialogOptions + [ _SPACE ];
+            DialogOptions = DialogOptions + [ _DESTS ];
+            DialogOptions = DialogOptions + [ _SPACE ];
+            DialogMessage = DialogMessage +
+                            "\nFirst select your " + _DESTS + "\n";
+            DialogMessage = DialogMessage + _DESTS + " = UNSET";
+        }
+        else {
+            DialogMessage = DialogMessage + "\n" + _DESTS + " = " + Dest;
+            if (Day == "") {
+                DialogOptions = DialogOptions + [ _DATES ];
+                DialogMessage = DialogMessage + "\nDate = UNSET";
+            }
+            else
+                DialogMessage = DialogMessage + "\nDate = " + Day;
+            if (Time == "") {
+                DialogOptions = DialogOptions + [ _TIMES ];
+                DialogMessage = DialogMessage + "\nTime = UNSET";
+            }
+            else
+                DialogMessage = DialogMessage + "\nTime = " + Time;
+        }
+    } else if ( aMenu == _DATES ) {
+        DialogMessage = DATE_DIALOG_MESSAGE;
+        DialogOptions = Dates;
+        if (Day == "")
+            DialogMessage = DialogMessage + "\nDate = UNSET";
+        else
+            DialogMessage = DialogMessage + "\nDate = " + Day;
+    } else if ( aMenu == _TIMES ) {
+        DialogMessage = TIME_DIALOG_MESSAGE;
+        DialogOptions = Times;
+        if (Time == "")
+            DialogMessage = DialogMessage + "\nTime = UNSET";
+        else
+            DialogMessage = DialogMessage + "\nTime = " + Time;
+    } else if ( aMenu == _DESTS ) {
+        DialogMessage = DEST_DIALOG_MESSAGE;
+        DialogOptions = Dests;
+        if (Dest == "")
+            DialogMessage = DialogMessage + "\n" + _DESTS + " = UNSET";
+        else
+            DialogMessage = DialogMessage + "\n" + _DESTS + " = " + Dest;
+    } else {
+        return;
+    }
+
+    if ( aPush ) {
+        _NavigationStack += [ aMenu ];
+    }
+
+    ShowDialogInitial( "\n" + DialogMessage, DialogOptions, aID );
+}
+
+integer MenuListen( string aMenu, string aButton, string aAvatarName, key aAvatarKey ) {
+    integer RESHOWDIALOG = TRUE;
+    string tmpstr;
+
+    if ( aMenu == _MAIN ) {
+        if ( aButton == _LM ) {
+            llGiveInventory(aAvatarKey,
+                            llGetInventoryName(INVENTORY_LANDMARK, 0));
+        }
+        else if ( aButton == _INFO ) {
+            llGiveInventory(aAvatarKey, _INFO);
+        }
+        else if ( aButton == _EXIT ) {
+            if ((Day == "") || (Time == "") || (Dest == ""))
+                elapsed = 9999;
+            return FALSE;
+        }
+    }
+    else if ( aMenu == _DATES ) {
+        if(~llListFindList(Dates, [ aButton ])) {
+            Day = aButton;
+            llMessageLinked(LINK_THIS, 707, Day, "");
+        }
+    } else if ( aMenu == _TIMES ) {
+        if(~llListFindList(Times, [ aButton ])) {
+            Time = aButton;
+            llMessageLinked(LINK_THIS, 708, Time, "");
+        }
+    } else if ( aMenu == _DESTS ) {
+        if(~llListFindList(Dests, [ aButton ])) {
+            Dest = aButton;
+            if (ind_days) {
+                tmpstr = llList2String(Weekdays, llListFindList(Dests, [Dest]));
+                Weekdays = llParseString2List(tmpstr, [","], []);
+                Make_Days_List();
+            }
+            if (ind_times) {
+                tmpstr = llList2String(Times, llListFindList(Dests, [Dest]));
+                Times = llParseString2List(tmpstr, [","], []);
+            }
+            llMessageLinked(LINK_THIS, 706, Dest, "");
+        }
+    }
+    return RESHOWDIALOG;
+}
+
+string GetDay(float year, float month, float date)
+{
+    if(month < 3) {month += 12; --year;}  // These lines mathematicly translate
+    integer N = (integer)date;            // Date, Month and year
+    N += (integer)(2.0 * month);          // into a number which represents
+    N += llFloor(3.0 * (month + 1.0) / 5.0); // a given day of the week.
+    N += (integer)year;                   // 0 = Saturday     1 = Sunday
+    N += llFloor(year / 4.0);             // 2 = Monday       3 = Tuesday
+    N -= llFloor(year / 100.0);           // 4 = Wednesday    5 = Thursday
+    N += llFloor(year / 400.0);           // 6 = Friday
+    N += 2;                               //
+    N = N % 7;
+
+    string day;                           // The rest of the function
+    if(N == 0) day = "Sat";                // translates the number
+    else if(N == 1) day = "Sun";           // into the name of the day.
+    else if(N == 2) day = "Mon";
+    else if(N == 3) day = "Tue";
+    else if(N == 4) day = "Wed";
+    else if(N == 5) day = "Thu";
+    else if(N == 6) day = "Fri";
+    return day;
+}
+
+string GetPSTDate() {
+    string DateToday = "";
+    string DateUTC = llGetDate();
+    //if it's negative then the date has changed.
+    if (llGetGMTclock() -  llGetWallclock() < 0) {
+        integer year = (integer)llGetSubString(DateUTC, 0, 3);
+        integer month = (integer)llGetSubString(DateUTC, 5, 6);
+        integer day = (integer)llGetSubString(DateUTC, 8, 9);
+        
+        if (day == 1) // if day is the 1st of a month, fix the date
+        {
+            if (month == 1) // if it is January
+            {
+                year = year - 1; // wind back the year
+                month = 12; // set the month to December
+                day = 31; // set to last day of December
+            }
+            else
+            {
+                month = month - 1; // wind back one month 
+                if(month == 2)
+                    day = 28 + !(year % 4) - !(year % 100) + !(year % 400);
+                else
+                    day = 31 - (month == 4 || month == 6 || month == 9 || month == 11);
+            }
+        }
+        else
+            day = day - 1;
+        if(month < 10)
+            DateToday = "0";
+        DateToday+=(string)month + "-";
+        if(day < 10)
+            DateToday += "0";
+        DateToday+=(string)day;
+        return (string)year + "-" + DateToday;
+    }
+    return DateUTC;
+}
+
+string Month_Name(integer n) {
+    string month;
+    if (n == 1)
+        month = "Jan";
+    else if (n == 2)
+        month = "Feb";
+    else if (n == 3)
+        month = "Mar";
+    else if (n == 4)
+        month = "Apr";
+    else if (n == 5)
+        month = "May";
+    else if (n == 6)
+        month = "Jun";
+    else if (n == 7)
+        month = "Jul";
+    else if (n == 8)
+        month = "Aug";
+    else if (n == 9)
+        month = "Sep";
+    else if (n == 10)
+        month = "Oct";
+    else if (n == 11)
+        month = "Nov";
+    else if (n == 12)
+        month = "Dec";
+    return month;
+}
+
+Make_Days_List() {
+    integer d;
+    integer m;
+    integer y;
+    integer i;
+    string str;
+    list tmp;
+    Dates = [];
+    d = (integer)llGetSubString(Date, -2, -1);
+    m = (integer)llGetSubString(Date, 5, 6);
+    y = (integer)llGetSubString(Date, 0, 3);
+    for (i = 0; i < 18; ) {
+        if ((d > 28) && (m == 2)) {
+            d = 1;
+            m = 3;
+        }
+        else if ((d > 30) && ((m == 4) || (m == 6) || (m == 8) || (m == 10))) {
+            d = 1;
+            m = m + 1;
+        }
+        else if (d > 31) {
+            d = 1;
+            m = m + 1;
+            if (m > 12) {
+                m = 1;
+            }
+        }
+        string Weekday = GetDay((float)y, (float)m, (float)d);
+        if(~llListFindList(Weekdays, [ Weekday ])) {
+            str = Month_Name(m) + " " + (string)d + " (" + Weekday + ")";
+            Dates = Dates + [ str ];
+            i++;
+        }
+        d = d + 1;
+    }
+    // Reorder list in usual human readable order - top to bottom, left to right
+    tmp = llList2List(Dates, 6, 8) + llList2List(Dates, 3, 5) +
+          llList2List(Dates, 0, 2) + llList2List(Dates, -3, -1) +
+          llList2List(Dates, -6, -4) + llList2List(Dates, -9, -7);
+    Dates = tmp;
+    tmp = [];
+}
+
+Set_Texture() {
+    llSetTexture(TEXTURE_TRANSPARENT, 0);
+    llSetTexture(texture, 1);
+    llSetTexture(TEXTURE_TRANSPARENT, 2);
+    llSetTexture(texture, 3);
+    llSetTexture(TEXTURE_TRANSPARENT, 4);
+    llSetTexture(TEXTURE_TRANSPARENT, 5);
+}
+ 
+default {
+    state_entry() {
+        owner = llGetOwner();
+        user_key = NULL_KEY;
+        if (Read_Config) {
+            if (llGetInventoryType(CONFIG_CARD) == INVENTORY_NOTECARD) {
+                NotecardLine = 0;
+                D_QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
+            }
+            else {
+                llOwnerSay("Reservation configuration notecard missing, using defaults.");
+            }
+            Read_Config = 0;
+        }
+        llSetText(hover_text, <0.0, 1.0, 0.0>, 1.0);
+    }
+
+    on_rez(integer params)
+    {
+        Set_Texture();
+        llResetScript();
+    }
+
+    dataserver( key queryid, string data )
+    {
+        list temp;
+        string name;
+        string value;
+        if ( queryid == D_QueryID ) {
+            if ( data != EOF ) {
+                if (data == "END_SETTINGS") {
+                    return;
+                }
+                if ( llGetSubString(data, 0, 0) != "#" &&
+                     llStringTrim(data, STRING_TRIM) != "" ) {
+                    temp = llParseString2List(data, ["="], []);
+                    name = llStringTrim(llList2String(temp, 0), STRING_TRIM);
+                    value = llStringTrim(llList2String(temp, 1), STRING_TRIM);
+                    if ( value == "TRUE" ) value = "1";
+                    if ( value == "FALSE" ) value = "0";
+                    if ( name == "EMAIL" ) {
+                        integer asperand = llSubStringIndex(value, "@");
+                        if (asperand > 0 && 
+                            ~llSubStringIndex(llGetSubString(value,
+                                              asperand+2, -1), ".")) {
+                            email_address = value;
+                            llMessageLinked(LINK_THIS, 704, email_address, "");
+                        }
+                        else {
+                            llOwnerSay(value + " does not appear to be a valid email address.");
+                        }
+                    }
+                    else if ( name == "HOVER_TEXT" ) {
+                        hover_text = value;
+                        llSetText(hover_text, <0.0, 1.0, 0.0>, 1.0);
+                    }
+                    else if ( name == "TEXTURE" ) {
+                        texture = value;
+                        Set_Texture();
+                    }
+                    else if ( name == "MAIN_DIALOG" ) {
+                        MAIN_DIALOG_MESSAGE = value;
+                    }
+                    else if ( name == "DATE_DIALOG" ) {
+                        DATE_DIALOG_MESSAGE = value;
+                    }
+                    else if ( name == "DEST_DIALOG" ) {
+                        DEST_DIALOG_MESSAGE = value;
+                    }
+                    else if ( name == "TIME_DIALOG" ) {
+                        TIME_DIALOG_MESSAGE = value;
+                    }
+                    else if ( name == "NAME" ) {
+                        llSetObjectName(value);
+                    }
+                    else if ( name == "EVENT_TYPE" ) {
+                        _DESTS = value;
+                        _NavigationMenus = [ _MAIN, _DATES, _DESTS, _TIMES ];
+                    }
+                    else if ( name == "EVENTS" ) {
+                        Dests = llParseString2List(value, [","], []);
+                        llMessageLinked(LINK_THIS, 700,
+                                        llDumpList2String(Dests, ","), "");
+                    }
+                    else if ( name == "PRICES" ) {
+                        Prices = llParseString2List(value, [","], []);
+                        llMessageLinked(LINK_THIS, 701,
+                                        llDumpList2String(Prices, ","), "");
+                    }
+                    else if ( name == "DEFAULT_PRICE" ) {
+                        defprice = (integer)value;
+                        llMessageLinked(LINK_THIS, 702, value, "");
+                    }
+                    else if ( name == "DAYS" ) {
+                        if (value != "") {
+                            Weekdays = llParseString2List(value, ["|"], []);
+                            if (llGetListLength(Weekdays) > 1)
+                                ind_days = 1;
+                            else
+                                Weekdays = llParseString2List(value, [","], []);
+                        }
+                    }
+                    else if ( name == "TIMES" ) {
+                        if (value != "") {
+                            Times = llParseString2List(value, ["|"], []);
+                            if (llGetListLength(Times) > 1)
+                                ind_times = 1;
+                            else
+                                Times = llParseString2List(value, [","], []);
+                        }
+                    }
+                    else if ( name == "REFUND" ) {
+                        refund = (integer)value;
+                        llMessageLinked(LINK_THIS, 703, value, "");
+                    }
+                }
+                NotecardLine++;
+                D_QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
+            }
+        }
+    }
+
+    touch_start(integer total_number)
+    {
+        user_key = llDetectedKey(0);
+        llSetText("Reservation board in use - please wait.",
+                  <1.0, 0.0, 0.0>, 1.0);
+        state getinfo;
+    }
+
+    changed(integer change)
+    {
+        if (change & CHANGED_INVENTORY)
+        {
+            if (dialog_handle)
+                llListenRemove(dialog_handle);
+            dialog_handle = 0;
+            Read_Config = 1;
+            llResetScript();
+        }
+    }
+}
+
+state getinfo {
+    state_entry() {
+        Day = "";
+        Time = "";
+        Dest = "";
+        Date = GetPSTDate();
+        if (ind_days == 0)
+            Make_Days_List();
+        if (dialog_handle == 0) {
+            _DialogChannel = -1000000000 - (integer)llFrand(999999999);
+            dialog_handle = llListen(_DialogChannel, "", NULL_KEY, "");
+        }
+        if (user_key == NULL_KEY)
+            state default;
+        else {
+            llMessageLinked(LINK_THIS, 705, "", user_key);
+            ShowMainMenu(user_key);
+        }
+        elapsed = 0;
+        llSetTimerEvent(10.0);
+    }
+
+    on_rez(integer params)
+    {
+        Set_Texture();
+        llResetScript();
+    }
+
+    listen(integer channel, string name, key id, string message)
+    {
+        if ( channel == _DialogChannel ) {
+            integer IDX = llGetListLength( _NavigationStack ) - 1;
+            if ( IDX < 0 )
+                return;
+            ListenHandler(llList2String(_NavigationStack, IDX ), message,
+                          name, id );
+        }
+    }
+
+    changed(integer change)
+    {
+        if (change & CHANGED_INVENTORY)
+        {
+            if (dialog_handle)
+                llListenRemove(dialog_handle);
+            dialog_handle = 0;
+            Read_Config = 1;
+            llResetScript();
+        }
+    }
+
+    link_message(integer sender, integer num, string message, key trigger)
+    {
+        if (num == 800) { // Underpayment with debit, start over
+            state default;
+        }
+        else if (num == 888) { // Reservation booked
+            state default;
+        }
+        else if (num == 999) { // Payment window timed out
+            state default;
+        }
+    }
+
+    timer() {
+        elapsed++;
+        if (elapsed > 20) {
+            if (dialog_handle)
+                llListenRemove(dialog_handle);
+            dialog_handle = 0;
+            llSetTimerEvent(0.0);
+            if (elapsed < 9999)
+                llInstantMessage(user_key, "Dialog timed out. " + _RESTART);
+            llResetScript();
+        }
+        if ((Day != "") && (Time != "") && (Dest != "")) {
+            llMessageLinked(LINK_THIS, 777, Dest, "");
+            llSetTimerEvent(0.0);
+        }
+    }
+
+    state_exit() {
+        llSetTimerEvent(0.0);
+    }
+}

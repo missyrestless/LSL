@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+#
+
+montage -border 0x0+5+5 airline.jpg event.jpg escorts.jpg reservation_board_spanish.jpg -geometry 512x384+5+5 -shadow ad2.jpg
+
+convert -geometry 1024x768! ad2.jpg reservation_system_spanish.jpg
+
+rm -f ad2.jpg

@@ -1,0 +1,33 @@
+Dueño de la tienda y diseñador: Missy Restless
+URL de la tienda: https://marketplace.secondlife.com/stores/44210
+Demostraciones: http://slurl.com/secondlife/Gualdo/204/224/43
+Blogs: http://missyrestless.blogspot.com (Moda y reseñas del producto)
+       http://pandorabot.blogspot.com (Pandorabots Second Life)
+
+Reservas y Sistema de Pagos - L$495
+https://marketplace.secondlife.com/p/Reservation-with-Payment-System/1976778
+
+El Estudio Inquieto el Sistema de Reservaciones proporciona un fácil utilizar el interfaz de menú de diálogo que permite al visitante estar en el hotel, una fecha de reserva del tiempo, y el destino o evento. El propietario puede establecer los horarios y los precios individuales para cada destino y sin dificultades. La reserva es reservado cuando la junta recibe el pago de reservas igual o mayor que el precio para el evento. Anuncio de la reserva se envía al propietario a través de mensaje instantáneo y, si está configurado, por correo electrónico. El visitante recibe un mensaje instantáneo y de diálogo informándole de que su reserva ha sido reservada. El propietario de reserva del sistema puede configurar el destino / nombres de los eventos, los precios, el precio por defecto, la dirección de correo electrónico, texto flotar, la textura de salón, de diálogo de texto del menú, los días de la semana para mostrar, y horas del día para mostrar. Este documento está disponible en formato PDF en http://www.scribd.com/missyrestless
+
+El paquete contiene el Sistema de Reservaciones:
+
+     * Tres preconfigurado tablas de reserva (líneas aéreas, evento y acompañante)
+     * La Reserva Manual del Propietario
+     * fichas de configuración de ejemplo para la línea aérea, eventos y reservas de escolta
+     * Un punto de referencia a la manifestación de reserva Junta en Inquietas Estudio
+
+El propietario puede configurar la configuración predeterminada para:
+
+     * Destino / eventos / servicio de nombres
+     * El precio para cada destino / eventos / servicio
+     * Precio Por defecto
+     * Pase el ratón para mostrar el texto
+     * La textura de utilizar en la parte frontal de la placa y el dorso
+     * diálogo de texto del menú
+     * Nombre de la junta de reserva
+     * Tipo de registros de la actividad se ofrecen para
+     * Los días de la semana para aceptar las solicitudes de reserva
+     * El tiempo del día para aceptar solicitudes de reserva
+     * Correo electrónico a usar cuando se notifica al propietario de una solicitud
+
+Manuales y otros El Sistema de Reservaciones del propietario inquietas manuales Studio están disponibles en formato PDF en http://www.scribd.com/missyrestless

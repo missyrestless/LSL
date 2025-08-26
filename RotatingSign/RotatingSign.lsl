@@ -1,5 +1,9 @@
-// Rotating Sign ver. 1.2
+// Rotating Sign ver. 2.0
 // Created 02-Feb-2012 by Missy Restless
+// Modified 26-Aug-2025 by Missy Restless
+//   - Touch to start/stop rotation
+//   - Sync client-side and server-side rotations
+//   - Add configuration options to enable/disable setting of scale and textures
 //
 // Rotate about z-axis, periodically emit particle display, when touched
 // optionally deliver a notecard, object, texture, sound, clothing, script,
@@ -8,15 +12,15 @@
 
 integer particles = 1;
 integer give_notecard = 1;
-integer give_landmark = 1;
-integer give_object = 1;
-integer give_texture = 1;
-integer give_sound = 1;
-integer give_clothing = 1;
-integer give_script = 1;
-integer give_bodypart = 1;
-integer give_animation = 1;
-integer give_gesture = 1;
+integer give_landmark = 0;
+integer give_object = 0;
+integer give_texture = 0;
+integer give_sound = 0;
+integer give_clothing = 0;
+integer give_script = 0;
+integer give_bodypart = 0;
+integer give_animation = 0;
+integer give_gesture = 0;
 integer hover_text = 1;
 integer rotate = 1;
 integer setscale = 0;
@@ -24,7 +28,7 @@ integer textures = 0;
 integer use_particles = 1;
 integer touch_enabled = 1;
 integer auto_deliver = 0;
-integer inform_on_arrival = 1;
+integer inform_on_arrival = 0;
 string note_name = "";
 string land_name = "";
 string object_name = "";
@@ -52,6 +56,9 @@ vector start = <1.00000, 0.25000, 1.00000>;
 vector end = <1.00000, 1.00000, 1.00000>;
 vector accel = <1.00000, 1.00000, -1.00000>;
 vector scale = <4.0, 0.01, 8.4>;
+
+integer iOn;
+integer iStep;
 
 integer NotecardLine;
 string CONFIG_CARD = "Config";
@@ -581,15 +588,35 @@ default
         }
     }
 
+    // To make an object return to its initial rotation when target omega stops,
+    // first make the object rotate both client side and server side. Then, when
+    // you stop llTargetOmega, reset server side rotation. Here's one way to do it.
     touch_start(integer num_detect) {
-      integer i;
-      if (touch_enabled) {
-        for (i=0;i<num_detect;i++) {
-          deliver_items(llDetectedKey(i));
+        integer i;
+        if (touch_enabled) {
+            for (i=0;i<num_detect;i++) {
+                deliver_items(llDetectedKey(i));
+            }
         }
-      }
+        iOn = !iOn;
+        if (iOn) {
+	    // Start rotating client side with llTargetOmega
+            // llTargetOmega(<0.0,0.0,0.25>, 0.25, PI);
+            llTargetOmega(<0.0,0.0,1.0>, PI/8, 1.0);
+	    //Start timer to rotate server side
+            llSetTimerEvent(1.0);
+        }
+        else {
+	    //Stop client side rotation
+            llTargetOmega(<0.0,0.0,1.0>, 0.0, 0.0);
+	    //Stop timer and thus server side rotation
+            llSetTimerEvent(0.0);
+	    //Set server side rotation to <0.0,0.0,0.0>
+            llSetRot(ZERO_ROTATION);
+            iStep = 0;
+        }
     }
-
+    
     changed(integer change)
     {
         if (change & CHANGED_INVENTORY)
@@ -600,6 +627,8 @@ default
 
     timer()
     {
+	// Rotate at the same speed as llTargetOmega
+        llSetRot(llAxisAngle2Rot(<0.0,0.0,1.0> ,++iStep *PI/8));
         if (particles % 2) {
             llSetText("", hoverColor, 1.0);
             if (particles == 1) {

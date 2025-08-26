@@ -7,6 +7,8 @@ SETUP
 
 After unpacking the product box and copying the contents to your inventory, simply rez the Truth & Beauty Lab Rotating Sign. By default, it is textured with the Truth & Beauty Lab logo and delivers a notecard providing information on the Truth & Beauty Lab. You can easily retexture and resize the sign with your own shop logo or custom texture. To deliver your own notecard and landmark simply replace the Truth & Beauty Lab notecard and landmark with any you wish to deliver to your guests. You can also add a texture, object, sound, clothing item, script, body part, animation, or gesture to the Rotating Sign's contents to deliver these as well. To customize the sign front and back textures, set the TEXTURE_FRONT and/or TEXTURE_BACK settings in the Config notecard (see below).
 
+Alternately, since the Truth & Beauty Lab Rotating Sign is FULL PERM, you can rez the unpacked product box and configure the rezzed sign to give itself to greeted users who touch the sign. To enable this gift to your visitors, set TOUCH_ENABLED = TRUE and GIVE_OBJECT = TRUE in the Config notecard.
+
 
 CONFIGURATION
 
@@ -92,28 +94,28 @@ If TRUE, deliver a landmark when touched. If FALSE, do not
 GIVE_LANDMARK = TRUE
 
 If TRUE, deliver an object when touched. If FALSE, do not
-GIVE_OBJECT = TRUE
+GIVE_OBJECT = FALSE
 
 If TRUE, deliver a texture when touched. If FALSE, do not
-GIVE_TEXTURE = TRUE
+GIVE_TEXTURE = FALSE
 
 If TRUE, deliver a sound when touched. If FALSE, do not
-GIVE_SOUND = TRUE
+GIVE_SOUND = FALSE
 
 If TRUE, deliver a clothing item when touched. If FALSE, do not
-GIVE_CLOTHING = TRUE
+GIVE_CLOTHING = FALSE
 
 If TRUE, deliver a body part when touched. If FALSE, do not
-GIVE_BODYPART = TRUE
+GIVE_BODYPART = FALSE
 
 If TRUE, deliver an animation when touched. If FALSE, do not
-GIVE_ANIMATION = TRUE
+GIVE_ANIMATION = FALSE
 
 If TRUE, deliver a gesture when touched. If FALSE, do not
-GIVE_GESTURE = TRUE
+GIVE_GESTURE = FALSE
 
 If TRUE, deliver a script when touched. If FALSE, do not
-GIVE_SCRIPT = TRUE
+GIVE_SCRIPT = FALSE
 
 Name of notecard to deliver. If not set, deliver first notecard in inventory
 that is not the Config notecard

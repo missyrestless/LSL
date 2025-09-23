@@ -2,6 +2,7 @@
 //  Copyright (C) 2013-2016 Wizardry and Steamworks  //
 //  Copyright (C) 2025      Truth & Beauty Lab       //
 //  License: CC BY 2.0                               //
+//  https://creativecommons.org/licenses/by/2.0/     //
 ///////////////////////////////////////////////////////
 //
 // This is a recall device that will make Corrade send you a teleport lure

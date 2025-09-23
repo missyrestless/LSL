@@ -1,0 +1,5 @@
+Rez the Truth & Beauty affiliate vendor. The vendor is Copy/Modify so you can rez as man copies as you want, size, and position them where you will.
+
+Affiliates now have their own control panel for affiliate vendors they have rezzed out. To access the menu, affiliates touch the main panel on the vendor to get the popup menu and choose "Affiliate", then "Control Panel".
+
+You may be pointed to the Affiliate Information page for information you need in order to use your new affiliate vendor.

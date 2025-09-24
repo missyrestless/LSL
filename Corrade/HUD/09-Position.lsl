@@ -1,8 +1,6 @@
-///////////////////////////////////////////////////////
-//  Copyright (C) 2016      Wizardry and Steamworks  //
-//  Copyright (C) 2025      Truth & Beauty Lab       //
-//  License: GNU GPLv3                               //
-///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+//  Copyright (C) Wizardry and Steamworks 2016 - License: GNU GPLv3      //
+///////////////////////////////////////////////////////////////////////////
 
 default {
     state_entry() {
@@ -13,7 +11,7 @@ default {
         if(sender != 1) return;
         if(str == "deploy") {
             llSetAlpha(1, ALL_SIDES);
-            llSetPos(<0, 0.11896, -0.06006>);
+            llSetPos(<0, 0.05949, 0.05859>);
             return;
         }
         if(str == "retract") {

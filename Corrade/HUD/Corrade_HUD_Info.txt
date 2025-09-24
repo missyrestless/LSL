@@ -68,21 +68,35 @@ The files in this folder are numbered to indicate which linked prim they reside 
 
 Linked prim #1 contains '01-Hud_Controller.lsl' and 'configuration'.
 
-- '00-Slide.lsl' goes in linked prims 2-17
-
 - '02-Point_At.lsl' goes in linked prim #2
+- '02-Position.lsl' goes in linked prim #2
 - '03-Tell.lsl' goes in linked prim #3
+- '03-Position.lsl' goes in linked prim #3
 - '04-Message_Relay.lsl' goes in linked prim #4
+- '04-Position.lsl' goes in linked prim #4
 - '05-Permission_Proxy.lsl' goes in linked prim #5
+- '05-Position.lsl' goes in linked prim #5
 - '06-Fly.lsl' goes in linked prim #6
+- '06-Position.lsl' goes in linked prim #6
 - '07-Sit_On_Prim.lsl' goes in linked prim #7
+- '07-Position.lsl' goes in linked prim #7
 - '08-Joystick.lsl' goes in linked prim #8
+- '08-Position.lsl' goes in linked prim #8
 - '09-Stand.lsl' goes in linked prim #9
+- '09-Position.lsl' goes in linked prim #9
 - '10-Recall.lsl' goes in linked prim #10
+- '10-Position.lsl' goes in linked prim #10
 - '11-Dialog_Proxy.lsl' goes in linked prim #11
+- '11-Position.lsl' goes in linked prim #11
 - '12-Grid_Follow.lsl' goes in linked prim #12
+- '12-Position.lsl' goes in linked prim #12
 - '13-Teleport.lsl' goes in linked prim #13
+- '13-Position.lsl' goes in linked prim #13
 - '14-Patrol.lsl' goes in linked prim #14
+- '14-Position.lsl' goes in linked prim #14
 - '15-Relax.lsl' goes in linked prim #15
+- '15-Position.lsl' goes in linked prim #15
 - '16-Touch.lsl' goes in linked prim #16
+- '16-Position.lsl' goes in linked prim #16
 - '17-Go_Home.lsl' goes in linked prim #17
+- '17-Position.lsl' goes in linked prim #17

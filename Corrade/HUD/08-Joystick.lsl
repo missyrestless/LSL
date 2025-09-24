@@ -89,7 +89,7 @@ default {
 state off {
     state_entry() {
         llReleaseControls();
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
     }
     touch_end(integer num) {
         state on;
@@ -148,7 +148,7 @@ state detect {
         state joy;
     }
     touch_start(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     attach(key id) {
@@ -172,7 +172,7 @@ state joy {
         llOwnerSay("Joystick on...");
     }
     touch_start(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     control(key id, integer level, integer edge) {

@@ -128,7 +128,7 @@ default {
  
 state off {
     state_entry() {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
     }
     touch_end(integer num) {
         state on;
@@ -169,7 +169,7 @@ state url {
         llRequestURL();
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     http_request(key id, string method, string body) {
@@ -219,7 +219,7 @@ state detect {
         );
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     dataserver(key id, string data) {
@@ -321,7 +321,7 @@ state select {
         llSetTimerEvent(1);
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     timer() {
@@ -386,7 +386,7 @@ state stop_pilot {
         state on;
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     attach(key id) {
@@ -463,7 +463,7 @@ state fly {
         state on;
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     http_request(key id, string method, string body) {
@@ -532,7 +532,7 @@ state stop_flight {
         state on;
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     http_request(key id, string method, string body) {
@@ -619,7 +619,7 @@ state walk {
         state on;
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     http_request(key id, string method, string body) {

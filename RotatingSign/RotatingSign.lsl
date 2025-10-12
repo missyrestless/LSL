@@ -593,27 +593,27 @@ default
     // you stop llTargetOmega, reset server side rotation. Here's one way to do it.
     touch_start(integer num_detect) {
         integer i;
+        iOn = !iOn;
+        if (iOn) {
+            // Start rotating client side with llTargetOmega
+            // llTargetOmega(<0.0,0.0,0.25>, 0.25, PI);
+            llTargetOmega(<0.0,0.0,1.0>, PI/8, 1.0);
+            //Start timer to rotate server side
+            llSetTimerEvent(1.0);
+        }
+        else {
+            //Stop client side rotation
+            llTargetOmega(<0.0,0.0,1.0>, 0.0, 0.0);
+            //Stop timer and thus server side rotation
+            llSetTimerEvent(0.0);
+            //Set server side rotation to <0.0,0.0,0.0>
+            llSetRot(ZERO_ROTATION);
+            iStep = 0;
+        }
         if (touch_enabled) {
             for (i=0;i<num_detect;i++) {
                 deliver_items(llDetectedKey(i));
             }
-        }
-        iOn = !iOn;
-        if (iOn) {
-	    // Start rotating client side with llTargetOmega
-            // llTargetOmega(<0.0,0.0,0.25>, 0.25, PI);
-            llTargetOmega(<0.0,0.0,1.0>, PI/8, 1.0);
-	    //Start timer to rotate server side
-            llSetTimerEvent(1.0);
-        }
-        else {
-	    //Stop client side rotation
-            llTargetOmega(<0.0,0.0,1.0>, 0.0, 0.0);
-	    //Stop timer and thus server side rotation
-            llSetTimerEvent(0.0);
-	    //Set server side rotation to <0.0,0.0,0.0>
-            llSetRot(ZERO_ROTATION);
-            iStep = 0;
         }
     }
     
@@ -625,9 +625,10 @@ default
         }
     }
 
+    
     timer()
     {
-	// Rotate at the same speed as llTargetOmega
+        // Rotate at the same speed as llTargetOmega
         llSetRot(llAxisAngle2Rot(<0.0,0.0,1.0> ,++iStep *PI/8));
         if (particles % 2) {
             llSetText("", hoverColor, 1.0);

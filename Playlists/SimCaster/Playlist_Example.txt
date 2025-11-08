@@ -1,0 +1,8 @@
+# Custom YouTube Playlist for Easy Streaming Spherical Theater
+#
+# Format:
+# Button Name|Youtube Video Name|YourTubeURL
+# Example format:
+# Immersive Experience | Immersive Experience - Mecca of Ancient Astronomy | https://youtu.be/oDP3arqFj7c
+Asciiville | Asciiville | https://youtube.com/playlist?list=PLh3A0cnoWYswaNiG_9WGX2q5L5GpxUZuF&si=KuQbCajthUu1ZtKS
+CAKE | Cake | https://youtube.com/playlist?list=PL575DFB88A40C099F&si=DHxdrktsw2Vd1itG

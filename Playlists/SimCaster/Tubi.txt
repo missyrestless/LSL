@@ -1,0 +1,4 @@
+# This doesn't work. How to create a Tubi playlist for SimCaster?
+Face Off | Face Off movie | https://tubitv.com/movies/552643/face-off
+Radius | Radius | https://tubitv.com/movies/566448/radius
+The Loft | The Loft movie | https://tubitv.com/movies/100046685/the-loft

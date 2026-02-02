@@ -9,7 +9,6 @@
 ABBA | ABBA | https://youtube.com/playlist?list=PLh3A0cnoWYsxsN-N7ZIXusvHnUm7J89c8&si=-GBP6MNYxz7cwsG9
 Animation | Animation | https://youtube.com/playlist?list=PLh3A0cnoWYswDXQzIV_OlAoI1a-mFfuXw&si=i5KBHFkTBUvGey1k
 Anti-Idol | Anti-Idol | https://youtube.com/playlist?list=PLYmkYq5hhTi3w11edGT_JmHXBalcWYN8d&si=wz1YKDhBDkHB-Nzp
-Asciiville | Asciiville | https://youtube.com/playlist?list=PLh3A0cnoWYswaNiG_9WGX2q5L5GpxUZuF&si=KuQbCajthUu1ZtKS
 BABYMETAL | BABYMETAL | https://youtube.com/playlist?list=PLh3A0cnoWYszqUEL3AH0J9F4aIOTi4DAl&si=T9O13Hnf4l7C7zn3
 Bad Religion | Bad Religion | https://www.youtube.com/watch?v=v-D-fn-Z04w&list=PLn3jR-qEn33IN2FRuVGRbEQfud45Dq6Th
 Beatles | The Beatles | https://youtube.com/playlist?list=PLh3A0cnoWYszUQFlx6TnS816ubFRFugqV&si=m9QGrMN_Toe2eAio
@@ -36,6 +35,7 @@ Jellyfish | Jellyfish | https://youtube.com/playlist?list=PLh3A0cnoWYswOiXdtJgYc
 J/K-Pop | J-Pop K-Pop | https://youtube.com/playlist?list=PLh3A0cnoWYsxyAMxWpUKswHWpQlrNZ-_J&si=M1nYEJOlcuIGSlSd
 JWZ Mix | JWZ Mixtape | https://youtube.com/playlist?list=PL1E7BB01634741E82&si=EGj-HBGB7JrDSc5v
 Kat DeLuna | Kat DeLuna | https://youtube.com/playlist?list=PLh3A0cnoWYsw_ySbsw7tLoy6K9XO1z3B2&si=XY4YrOIQYFy5-ZLR
+Killers | The Killers | https://youtube.com/playlist?list=PLeUc4oWn7RNljaw8j7Cu8-G1SBp9RuFWB&si=80gcB0FrInZEUFCX
 LSD | LSD | https://youtube.com/playlist?list=PLTu_mo3y42N3OZ9y9C7FeWFWeaqCTJK56&si=k5ATWPaAdrqGjRKo
 Manassas | Manassas | https://youtube.com/playlist?list=PLh3A0cnoWYswvt_J1bnOWSnvsA8mOGo5c&si=2hZ1UX45NRjYPUnt
 Marcy | Marcy Playground | https://youtube.com/playlist?list=PL06B1DE0E0C8DAA90&si=wxAeFaswjH-_RXdM
@@ -50,10 +50,6 @@ Psy | Psy Trance | https://youtube.com/playlist?list=PL37257074D2E5A7D2&si=AJ1wh
 QOTSA | Queens of the Stone Age | https://youtube.com/playlist?list=PLh3A0cnoWYsygnJNOzlWCXlxJ9D5icGBa&si=v1x3mjur1bLEWtCd
 Rufus Wainwright | Rufus Wainwright | https://youtube.com/playlist?list=PLh3A0cnoWYsykrSGVm0Cq5Xc_AXh-Fw-f&si=PnBaNBNU1OxpNb3h
 Sean Lennon | Sean Lennon - selections from Friendly Fire | https://youtube.com/playlist?list=FL-Rx3CLvNzwzn9khD2hSRFQ&si=MPIadK4W7aTq7OSh
-SL | SLHamlet Cull | https://youtube.com/playlist?list=PLFA47CC047D046877&si=K2vZRehhjTA1UC6p
-SL Inner Spheres | Inner Spheres Demonstrations | https://youtube.com/playlist?list=PLAD98F1F74C55121E&si=tb0jTo87Raj0DgbT
-SL Machinima | Second Life Machinima | https://youtube.com/playlist?list=PL258A16454DB2BC27&si=3II1HWIsJDqp3moC
-SL Plus | More SL | https://youtube.com/playlist?list=PLAE62584D888167A7&si=bOfUBfilQUCqP055
 SOFI TUKKER | SOFI TUKKER | https://youtube.com/playlist?list=PLh3A0cnoWYsynpR9bhDtDzpd8iYRXZulp&si=ew8wH1vb52fPvOqN
 Trance | Trance | https://youtube.com/playlist?list=PL6DAF152F352A8561&si=LJt0X1vsN4xD2cCh
 TV Series | TV Series Opening Titles | https://youtube.com/playlist?list=PLh3A0cnoWYsyh-2l1bEJlFIzl_5gtlcwZ&si=iRhMvCWHs3Vl82HF

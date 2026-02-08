@@ -1,6 +1,6 @@
 # Playlist of playlists for SimCaster Easy Streaming TV and Spherical Theater
 #
-# Contributed by SL resident Doc Rae
+# Contributions by SL residents Doc Rae & Missy Restless
 #
 # Format:
 # Button Name|Youtube Video Name|YourTubeURL
@@ -9,7 +9,10 @@
 ABBA | ABBA | https://youtube.com/playlist?list=PLh3A0cnoWYsxsN-N7ZIXusvHnUm7J89c8&si=-GBP6MNYxz7cwsG9
 Animation | Animation | https://youtube.com/playlist?list=PLh3A0cnoWYswDXQzIV_OlAoI1a-mFfuXw&si=i5KBHFkTBUvGey1k
 Anti-Idol | Anti-Idol | https://youtube.com/playlist?list=PLYmkYq5hhTi3w11edGT_JmHXBalcWYN8d&si=wz1YKDhBDkHB-Nzp
+<<<<<<< HEAD
 Asciiville | Asciiville | https://youtube.com/playlist?list=PLh3A0cnoWYswaNiG_9WGX2q5L5GpxUZuF&si=KuQbCajthUu1ZtKS
+=======
+>>>>>>> b19af51d347f7af218e06c041a36f97fa8c74b86
 BABYMETAL | BABYMETAL | https://youtube.com/playlist?list=PLh3A0cnoWYszqUEL3AH0J9F4aIOTi4DAl&si=T9O13Hnf4l7C7zn3
 Bad Religion | Bad Religion | https://www.youtube.com/watch?v=v-D-fn-Z04w&list=PLn3jR-qEn33IN2FRuVGRbEQfud45Dq6Th
 Beatles | The Beatles | https://youtube.com/playlist?list=PLh3A0cnoWYszUQFlx6TnS816ubFRFugqV&si=m9QGrMN_Toe2eAio
@@ -31,11 +34,13 @@ Funny | Funny Videos | https://youtube.com/playlist?list=PL18EB12D7FC58EBD8&si=a
 Girls | Girls | https://youtube.com/playlist?list=PLeUc4oWn7RNkC93HQVLFq0k49d6UhYtOZ&si=-Rz-7aigkaF2TDdX
 Girls More | More Girls | https://youtube.com/playlist?list=PL3CA8BE05FE05D7BC&si=JkCgMJb8EpTWfoSQ
 Gorillaz | Gorillaz | https://youtube.com/playlist?list=PLh3A0cnoWYsxIjrBQu-a30mi7MdzkjPwO&si=CDsZJvTIECdC5VNE
+Green Day | Green Day | https://youtube.com/playlist?list=PLeUc4oWn7RNmDI3t29vHQjdI6C3q9TpP-&si=v3B11jHIMfW_ux0a
 Hans Zimmer | Hans Zimmer | https://youtube.com/playlist?list=PLh3A0cnoWYsw7XsMYxYxeZYhCCpmGs_Ow&si=smBjsz_nJKFZ-WFb
 Jellyfish | Jellyfish | https://youtube.com/playlist?list=PLh3A0cnoWYswOiXdtJgYc04kmjI7NHBN0&si=KVGyMp409FMJVnUX
 J/K-Pop | J-Pop K-Pop | https://youtube.com/playlist?list=PLh3A0cnoWYsxyAMxWpUKswHWpQlrNZ-_J&si=M1nYEJOlcuIGSlSd
 JWZ Mix | JWZ Mixtape | https://youtube.com/playlist?list=PL1E7BB01634741E82&si=EGj-HBGB7JrDSc5v
 Kat DeLuna | Kat DeLuna | https://youtube.com/playlist?list=PLh3A0cnoWYsw_ySbsw7tLoy6K9XO1z3B2&si=XY4YrOIQYFy5-ZLR
+Killers | The Killers | https://youtube.com/playlist?list=PLeUc4oWn7RNljaw8j7Cu8-G1SBp9RuFWB&si=80gcB0FrInZEUFCX
 LSD | LSD | https://youtube.com/playlist?list=PLTu_mo3y42N3OZ9y9C7FeWFWeaqCTJK56&si=k5ATWPaAdrqGjRKo
 Manassas | Manassas | https://youtube.com/playlist?list=PLh3A0cnoWYswvt_J1bnOWSnvsA8mOGo5c&si=2hZ1UX45NRjYPUnt
 Marcy | Marcy Playground | https://youtube.com/playlist?list=PL06B1DE0E0C8DAA90&si=wxAeFaswjH-_RXdM
@@ -55,6 +60,10 @@ SL Inner Spheres | Inner Spheres Demonstrations | https://youtube.com/playlist?l
 SL Machinima | Second Life Machinima | https://youtube.com/playlist?list=PL258A16454DB2BC27&si=3II1HWIsJDqp3moC
 SL Plus | More SL | https://youtube.com/playlist?list=PLAE62584D888167A7&si=bOfUBfilQUCqP055
 SOFI TUKKER | SOFI TUKKER | https://youtube.com/playlist?list=PLh3A0cnoWYsynpR9bhDtDzpd8iYRXZulp&si=ew8wH1vb52fPvOqN
+<<<<<<< HEAD
+=======
+DJ SOFI TUKKER | SOFI TUCKER Live DJ Sets | https://youtube.com/playlist?list=PLeUc4oWn7RNn1AJIhr_xjvGUS7yWXIDfI&si=N9BDNkMW9oukKNap
+>>>>>>> b19af51d347f7af218e06c041a36f97fa8c74b86
 Trance | Trance | https://youtube.com/playlist?list=PL6DAF152F352A8561&si=LJt0X1vsN4xD2cCh
 TV Series | TV Series Opening Titles | https://youtube.com/playlist?list=PLh3A0cnoWYsyh-2l1bEJlFIzl_5gtlcwZ&si=iRhMvCWHs3Vl82HF
 Ween | Ween | https://youtube.com/playlist?list=PLFB0C446AD473FC86&si=rSE_jS90jJZpafpG

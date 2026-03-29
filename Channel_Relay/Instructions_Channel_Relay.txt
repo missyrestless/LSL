@@ -3,23 +3,23 @@ Setup instructions for Channel Relay
 
 Channel Relay, when enabled, will relay messages on a specified channel to IMs to a configured bot.
 
-To setup Channel Relay, rez the "Channel Relay (test)" object and edit the channel_relay script:
+To setup Channel Relay, rez the "Channel Relay" object and edit the ChannelRelayConf notecard:
 
-1.  Rez the "Channel Relay (test)" object in-world
+1.  Rez the "Channel Relay" object in-world
 
 2.  Right click the rezzed object and select Edit
 
-3.  In the Content tab of the Edit window right click the channel_relay script and select Open
+3.  In the Content tab of the Edit window right click the "ChannelRelayConf" notecard and select Open
 
 4.  Replace "Bot Name" with your bot name:
 
-    string botName = "Bot Name";
+    LB_BOT_NAME = Bot Name
 
     Optionally, change LISTEN_CHANNEL, the channel that Channel Relay will listen on. The default channel is -7742001
 
-    Optionally, set DEBUG = 1 for verbose output to owner when relay is enabled
+    Optionally, set DEBUG = TRUE for verbose output to owner when relay is enabled
 
-5.  Save the customized channel_relay script
+5.  Save the customized ChannelRelayConf notecard
 
 6.  Click the Channel Relay object to enable listening on the configured channel. Messages on this channel will be sent to your bot as IMs.
 

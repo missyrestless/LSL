@@ -1,13 +1,11 @@
-This document is available in OpenOffice and PDF formats at http://www.scribd.com/doc/80571946/Rotating-Sign-Manual
-
 INTRODUCTION
 
-The Truth & Beauty Lab Rotating Sign is a single prim textured object that rotates about its z-axis, emits a variety of particle displays, and can be configured to deliver a notecard, object, texture, sound, clothing item, script, body part, animation, gesture, and landmark. All that is necessary to deliver items to your guests is to drop them into the sign – it automatically configures itself to deliver items in its contents. The sign can be extensively configured (see below). Actually, the box the product is delivered in is a 3D rotating sign so you get two signs for the price of one!
+The Truth & Beauty Lab Rotating Sign is a single prim FULL PERM textured object that rotates about its z-axis, emits a variety of particle displays, and can be configured to deliver a notecard, object, texture, sound, clothing item, script, body part, animation, gesture, and landmark. All that is necessary to deliver items to your guests is to drop them into the sign – it automatically configures itself to deliver items in its contents. The sign can be extensively configured (see below). Actually, the box the product is delivered in is a 3D rotating sign so you get two signs for the price of one!
 
 
 SETUP
 
-After unpacking the product box and copying the contents to your inventory, simply rez the Truth & Beauty Lab Rotating Sign. By default, it is textured with the Truth & Beauty Lab logo and delivers a notecard providing information on the Truth & Beauty Lab as well as a landmark to the TBL demonstration Pandorabot. You can easily retexture and resize the sign with your own shop logo or custom texture. To deliver your own notecard and landmark simply replace the Truth & Beauty Lab notecard and landmark with any you wish to deliver to your guests. You can also add a texture, object, sound, clothing item, script, body part, animation, or gesture to the Rotating Sign's contents to deliver these as well.
+After unpacking the product box and copying the contents to your inventory, simply rez the Truth & Beauty Lab Rotating Sign. By default, it is textured with the Truth & Beauty Lab logo and delivers a notecard providing information on the Truth & Beauty Lab. You can easily retexture and resize the sign with your own shop logo or custom texture. To deliver your own notecard and landmark simply replace the Truth & Beauty Lab notecard and landmark with any you wish to deliver to your guests. You can also add a texture, object, sound, clothing item, script, body part, animation, or gesture to the Rotating Sign's contents to deliver these as well. To customize the sign front and back textures, set the TEXTURE_FRONT and/or TEXTURE_BACK settings in the Config notecard (see below).
 
 
 CONFIGURATION
@@ -63,6 +61,12 @@ GROUP_MESSAGE = Click here to join our group:
 
 Whether to display the hover text
 HOVER_TEXT = TRUE
+
+Whether to set the width, height, and depth of the sign
+SET_SCALE = FALSE
+
+Whether to set the front and back textures of the sign
+SET_FRONT_BACK = FALSE
 
 Depth of the sign in meters
 DEPTH = 0.01
@@ -121,7 +125,7 @@ LANDMARK =
 Name of object to deliver. If not set, deliver first object in inventory
 OBJECT =
 
-Name of texture to deliver. If not set, deliver first texture in inventory. Note that if you add textures to the contents to customize the front and back of the sign that these textures will not be delivered. If you wish deliver the sign front or back texture then add those to an object for delivery.
+Name of texture to deliver. If not set, deliver first texture in inventory. Note that if you add textures to the contents to customize the front and back of the sign that these textures will not be delivered. If you wish to deliver the sign front or back texture then add those to an object for delivery.
 TEXTURE =
 
 Name of sound to deliver. If not set, deliver first sound in inventory
@@ -148,6 +152,8 @@ USAGE
 The default setting is to greet new arrivals with a message informing them to touch the sign to receive the delivery items. Auto delivery is a Config notecard option. You can also disable the scan for new arrivals to configure the sign to passively deliver items when touched.
 
 FURTHER INFORMATION
+
+This document is available in OpenOffice and PDF formats at http://www.scribd.com/doc/80571946/Rotating-Sign-Manual
 
 The Truth & Beauty Lab creates a variety of scripted objects including artificially intelligent 3D animated avatar bots that can query Wikipedia, provide answers from Wolfram Alpha, greet new arrivals, deliver notecards & landmarks, scan the area for objects and avatars producing a detailed report, follow their owner, emit magnificent particle displays, forward incoming email to IM's, and more.
 

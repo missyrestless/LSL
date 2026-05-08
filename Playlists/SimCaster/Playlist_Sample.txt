@@ -1,0 +1,52 @@
+#-----------------------------------------------------------------------------------+
+#                       SimCaster (TM) YouTube TV Video Playlist                    |
+#-----------------------------------------------------------------------------------+
+# The playlist for the Easy YouTube TV.
+#
+# Format: 
+#    Button Name|Youtube Video Name|YourTubeURL
+#
+#    Button Name and YouTube Video Name are optional
+#    # - Comments and blank lines are ignored
+#
+#-----------------------------------------------------------------------------------
+# A YouTube video playlist can have up to 50 videos, which will show up on the 
+# "Playlist" menu.  More videos can be added, but they can only be played with 
+# by choosing "Play All".  
+#
+# If a button name is omitted, the TV will call the playlist selections "Video 1",
+# "Video 2", "Video 3", etc.  If a button name is omitted, then it is necessary to
+# also leave out the YouTube Video name, and just supply the YouTube URL.
+#
+# Add as many playlist notecards to the TV as you wish.  Make each one a
+# theme or collection.  You can swap between playlist notecards with the menu.
+#-----------------------------------------------------------------------------------
+#
+# These are the sample playlists from the Easy Streaming TV and Spherical Theater.
+# They illustrate the various ways a playlist entry can be formed including sample
+# YouTube, Twitch, Daily Motion, and Vimeo entries. YouTube playlist URLs are alos
+# supported as playlist entries. For examples of these see # Playlist_Playlists.txt
+#-----------------------------------------------------------------------------------
+
+This is... | Armin van Buuren feat. Trevor Guthrie - This Is What It Feels Like | https://www.youtube.com/watch?v=BR_DFMUzX4E
+Strong | Motif ft. Pamela Nyambo - Strong (Original Mix) | https://www.youtube.com/watch?v=B83BCP2zFos
+https://youtu.be/ZX2KJKRViPA
+Stereo Love | Edward Maya & Mia Martina - Stereo Love | https://www.youtube.com/watch?v=6_5D4y6x-oo
+Monster | Morland - A Monster Like Me | https://www.youtube.com/watch?v=LYMzvVyo0I4
+Candy | Robbie Williams - Candy | https://www.youtube.com/watch?v=gtOV7bp-gys
+Vimeo Vid|A sample Vimeo video|https://vimeo.com/300961604
+DailyMotion Vid|Summer Music Mix 2019|https://www.dailymotion.com/video/x74j9hz
+Twitch Vid|Vanessa Lopez DJ | https://www.twitch.tv/vanessa_lopez_official
+Space Ambient | Space Ambient Mix - Most Beautiful & Emotional Music | https://youtu.be/ykNtCc24aZA
+Piano Music|Relaxing Piano Music|https://www.youtube.com/playlist?list=PLQkQfzsIUwRbn10S3eZJJx7GCCzUOkvzx
+FH 2018 | The Best Of Vocal Deep House Music Chill Out #83 | https://www.youtube.com/watch?v=5rGhWGhqf_s
+Second Life | Klaas - Second Life | https://www.youtube.com/watch?v=z_DMvoV955w
+Immersive Experience | Immersive Experience - Mecca of Ancient Astronomy | https://youtu.be/oDP3arqFj7c
+DJ Visuals|1 Hour Futuristic DJ Visuals|https://youtu.be/V0N07fGHbCc
+VJ Visuals|3 Hours of Amazing VJ Visuals|https://youtu.be/FwIHSDiFye8
+Fireworks | 10 Hours of Fireworks Display | https://youtu.be/0E4haJHYUJw
+Dragon| Soul of Dragon | https://youtu.be/QtQ67stwYoY
+Fractal 1 | The Next Dimension | mhttps://youtu.be/hRrBnI5L0u8
+Fractal 2 | Eye of the Universe | https://youtu.be/pCpLWbHVNhk
+Fractal 3 | Like in a Dream |https://youtu.be/S530Vwa33G0
+Fractal 4 | The Hardest Trip | https://youtu.be/LhOSM6uCWxk

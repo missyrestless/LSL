@@ -1,0 +1,21 @@
+# Playlist of playlists for Easy Streaming Spherical Theater
+#
+# Format:
+# Button Name|Youtube Video Name|YourTubeURL
+# Example format:
+# Immersive Experience | Immersive Experience - Mecca of Ancient Astronomy | https://youtu.be/oDP3arqFj7c
+Animation | Animation | https://youtube.com/playlist?list=PLh3A0cnoWYswDXQzIV_OlAoI1a-mFfuXw&si=i5KBHFkTBUvGey1k
+Asciiville | Asciiville | https://youtube.com/playlist?list=PLh3A0cnoWYswaNiG_9WGX2q5L5GpxUZuF&si=KuQbCajthUu1ZtKS
+BABYMETAL | BABYMETAL | https://youtube.com/playlist?list=PLh3A0cnoWYszqUEL3AH0J9F4aIOTi4DAl&si=T9O13Hnf4l7C7zn3
+Beck | Beck | https://youtube.com/playlist?list=PLh3A0cnoWYswXl8rCQeVbSGzKKC44AxLh&si=dtlYvPe9GGOr7JZX
+Bowie | David Bowie | https://youtube.com/playlist?list=PLh3A0cnoWYsz3VA1yyE2Qyn_R17vnyQFw&si=pDk8YAHNXY3CL6Y7
+CAKE | Cake | https://youtube.com/playlist?list=PL575DFB88A40C099F&si=DHxdrktsw2Vd1itG
+ELO | ELO | https://youtube.com/playlist?list=PLh3A0cnoWYsyb3QOvDf5Ui_xQSBVWs5Vs&si=qKhmOR2WTshU54TS
+Jellyfish | Jellyfish | https://youtube.com/playlist?list=PLh3A0cnoWYswOiXdtJgYc04kmjI7NHBN0&si=KVGyMp409FMJVnUX
+LSD | LSD | https://youtube.com/playlist?list=PLTu_mo3y42N3OZ9y9C7FeWFWeaqCTJK56&si=k5ATWPaAdrqGjRKo
+Miley | Miley Cyrus Covers | https://youtube.com/playlist?list=PLh3A0cnoWYszgf0WOCdF-xghoPaWSi3M3&si=YrGu-UleDxM-0T7B
+Organ | Organ Performances | https://youtube.com/playlist?list=PLh3A0cnoWYsyUfI2QWhYD6AfUbZluU4xy&si=6LIbjyw0kUIcbbeS
+Polo & Pan | Polo & Pan | https://youtube.com/playlist?list=PLh3A0cnoWYsxV1_GfD1neSbK8VkHHNY_e&si=YKuZqL4mv1D2C0hL
+QOTSA | Queens of the Stone Age | https://youtube.com/playlist?list=PLh3A0cnoWYsygnJNOzlWCXlxJ9D5icGBa&si=v1x3mjur1bLEWtCd
+Ween | Ween | https://youtube.com/playlist?list=PLFB0C446AD473FC86&si=rSE_jS90jJZpafpG
+Wow | Wow | https://youtube.com/playlist?list=PL0EBA8D0577378A9A&si=wGsbKwCSYOXxgRsA

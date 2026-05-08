@@ -1,0 +1,23 @@
+INTRODUCTION
+
+The BanListManager can be used to automate the ban of a list of Avatars from a parcel. BanListManager is intended for parcel bans only. For estate bans, an Estate Manager must use estate tools.
+
+BanListManager can accept a list of Avatar UUIDs in one of two formats:
+
+    One UUID per line
+or
+    One Name,UUID per line
+
+A list of banned Avatars can be exported from another parcel or region by right clicking on the ground, selecting 'About Land', clicking the 'Access' tab, and clicking the 'Export' button. This will download a CSV file, each line in the format Name,UUID.
+
+BanListManager can accept an exported ban list from another parcel or region and import it into another parcel without modification. In this way ban lists can be migrated from parcel/region to parcel.
+
+USAGE
+
+Create a new notecard in the contents and name it Ban_List.
+
+Edit the Ban_List notecard and paste your list of avatar UUIDs to ban. The list can either be one UUID to a line or one Name,UUID to a line.
+
+Right-click and "Touch" the object.
+Say "ban" in local chat (within listening range of the object) to trigger the import. 
+

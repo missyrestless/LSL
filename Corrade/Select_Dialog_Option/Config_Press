@@ -1,0 +1,18 @@
+####################### START CONFIGURATION ##################################
+# 
+# This is the UUID of the Corrade bot.
+corrade = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+# 
+# The name or UUID of the group
+group = "My Group"
+# 
+# The password for the group.
+password =  "mypassword"
+# 
+# The dialog menu items to press as a CSV list: this must be a list of exact button names that Corrade
+# will press. If multiple buttons share the same name, only the first match will be chosen.
+#
+# This CSV string follows RFC4180 and read with wasListToCSV instead of llCSV2List (!)
+response = "SINGLE*,ADULT*,CUDDLE*"
+# 
+####################### END CONFIGURATION ###################################

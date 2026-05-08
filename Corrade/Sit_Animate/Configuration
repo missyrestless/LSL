@@ -1,0 +1,12 @@
+####################### START CONFIGURATION ##################################
+#
+# The UUID of the Corrade bot
+corrade = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+# The name or UUID of the group
+group = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+# The password for the group.
+password = "<the password for the group>"
+
+####################### END CONFIGURATION ###################################

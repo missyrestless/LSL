@@ -91,7 +91,7 @@ default {
 state off {
     state_entry() {
         llReleaseControls();
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
     }
     touch_end(integer num) {
         state on;
@@ -134,7 +134,7 @@ state url {
         llRequestURL();
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     http_request(key id, string method, string body) {
@@ -190,11 +190,11 @@ state relax {
     timer() {
         // DEBUG
         llOwnerSay("Relax failed...");
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     http_request(key id, string method, string body) {
@@ -203,12 +203,12 @@ state relax {
             wasKeyValueGet("success", body) != "True") {
             // DEBUG
             llOwnerSay("Relax failed...");
-            llSetColor(<.5,0,0>, ALL_SIDES);
+            llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
             llResetScript();
         }
         // DEBUG
         llOwnerSay("Relax succeeded...");
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     attach(key id) {

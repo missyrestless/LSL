@@ -176,7 +176,7 @@ default {
 state off {
     state_entry() {
         llReleaseControls();
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
     }
     touch_end(integer num) {
         state on;
@@ -219,7 +219,7 @@ state url {
         llRequestURL();
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     http_request(key id, string method, string body) {
@@ -282,7 +282,7 @@ state message {
         llSetTimerEvent(60);
     }
     touch_end(integer num) {
-        llSetColor(<.5,0,0>, ALL_SIDES);
+        llSetColor(<0.498, 0.859, 1.000>, ALL_SIDES);
         llResetScript();
     }
     timer() {

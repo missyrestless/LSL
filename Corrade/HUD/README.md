@@ -2,6 +2,17 @@
 
 This is a control Heads-Up Display (HUD) for the Corrade scripted agent featuring some of the more common movement controls that allow you to control Corrade as a drone. The HUD is designed for the bleeding-edge (most recent version of Corrade) such that you will need a Corrade progressive scripted agent installed.
 
+## Table of Contents
+
+- [Group Requirements](#group-requirements)
+- [Marketplace Item](#marketplace-item)
+- [Setting Up](#setting-up)
+- [Usage](#usage)
+  - [Making the HUD Shut Up](#making-the-hud-shut-up)
+- [Building the HUD](#building-the-hud)
+
+## Group Requirements
+
 The configured group should have the following permissions enabled:
 
 - movement
@@ -54,3 +65,28 @@ llOwnerSay ... etc ...
 ```
 
 and delete or comment out those two lines for every script.
+
+## Building the HUD
+
+The files in this folder are numbered to indicate which linked prim they reside in.
+
+Linked prim #1 contains `01-Hud_Controller.lsl` and `configuration`.
+
+- `00-Slide.lsl` goes in linked prims 2-17
+
+- `02-Point_At.lsl` goes in linked prim #2
+- `03-Tell.lsl` goes in linked prim #3
+- `04-Message_Relay.lsl` goes in linked prim #4
+- `05-Permission_Proxy.lsl` goes in linked prim #5
+- `06-Fly.lsl` goes in linked prim #6
+- `07-Sit_On_Prim.lsl` goes in linked prim #7
+- `08-Joystick.lsl` goes in linked prim #8
+- `09-Stand.lsl` goes in linked prim #9
+- `10-Recall.lsl` goes in linked prim #10
+- `11-Dialog_Proxy.lsl` goes in linked prim #11
+- `12-Grid_Follow.lsl` goes in linked prim #12
+- `13-Teleport.lsl` goes in linked prim #13
+- `14-Patrol.lsl` goes in linked prim #14
+- `15-Relax.lsl` goes in linked prim #15
+- `16-Touch.lsl` goes in linked prim #16
+- `17-Go_Home.lsl` goes in linked prim #17

@@ -7,6 +7,7 @@ You can copy, modify, transfer, and sell these scripts.
 
 ## Repository Contents
 
+* `Corrade`: scripts for use with the Corrade scripted agent system
 * `RotatingSign`: rotating sign
 * `Slideshow`: slideshow
 * `Speak`: simple voice system for SL

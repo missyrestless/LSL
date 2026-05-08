@@ -1,0 +1,168 @@
+This document is available in OpenOffice and PDF formats at http://www.scribd.com/doc/80571946/Rotating-Sign-Manual
+
+INTRODUCTION
+
+The Truth & Beauty Lab Rotating Sign is a single prim textured object that rotates about its z-axis, emits a variety of particle displays, and can be configured to deliver a notecard, object, texture, sound, clothing item, script, body part, animation, gesture, and landmark. All that is necessary to deliver items to your guests is to drop them into the sign – it automatically configures itself to deliver items in its contents. The sign can be extensively configured (see below). Actually, the box the product is delivered in is a 3D rotating sign so you get two signs for the price of one!
+
+
+SETUP
+
+After unpacking the product box and copying the contents to your inventory, simply rez the Truth & Beauty Lab Rotating Sign. By default, it is textured with the Truth & Beauty Lab logo and delivers a notecard providing information on the Truth & Beauty Lab as well as a landmark to the TBL demonstration Pandorabot. You can easily retexture and resize the sign with your own shop logo or custom texture. To deliver your own notecard and landmark simply replace the Truth & Beauty Lab notecard and landmark with any you wish to deliver to your guests. You can also add a texture, object, sound, clothing item, script, body part, animation, or gesture to the Rotating Sign's contents to deliver these as well.
+
+
+CONFIGURATION
+
+The Truth & Beauty Lab Rotating Sign defaults can be modified by editing the Config notecard in the object's contents. To do so, right click the Rotating Sign object and select "Edit". In the edit window, click on the "Contents" tab. In the Contents tab, right click on the notecard "Config" and select "Open".
+
+Config Notecard Settings
+
+Settings in the Config notecard are specified in the format "<name> = <value>". Do not use "=" in either the <name> or <value>. Place any uncommented configuration settings above the END_SETTINGS line. Lines below END_SETTINGS will not be read and are there for information and help configuring. These comments can be left in the notecard without adversely effecting performance as the script stops reading the notecard when it hits the END_SETTINGS line.
+
+The default settings will work "out of the box" allowing you to simply drop in the items you wish to deliver to your guests. You may wish to customize the sign front and back textures, specify the size, and add a group key to issue group invitations but otherwise most of the defaults should work well as-is.
+
+Note that each category of items to be delivered can only specify a single item in that category. A single notecard or a single texture or a single landmark. If you have multiple items of the same category you wish to deliver (e.g. 3 notecards or 5 textures), simply box these items up and deliver them as an object.
+
+Available configuration settings (with defaults specified where applicable) are as follows:
+
+Whether to rotate about the z-axis
+ROTATE = TRUE
+
+Whether to display particle effects
+USE_PARTICLES = TRUE
+
+Duration of particle displays in seconds.
+To disable particle displays, set this to 0.0
+PARTICLE_DURATION = 30.0
+
+Interval between particle displays in seconds
+PARTICLE_INTERVAL = 120.0
+
+Whether clicking on the sign will trigger deliver of items to the toucher
+TOUCH_ENABLED = TRUE
+
+Whether to scan the area for new arrivals and automatically deliver items
+Note, this should be used with caution - your guests will automatically
+receive the delivery items without touching the sign.
+AUTO_DELIVER = FALSE
+
+If auto-delivery is enabled, whether to just tell the new arrival to touch
+me for deliver of the items. If FALSE, then items will be sent automatically.
+INFORM_ON_ARRIVAL = TRUE
+
+If auto-delivery is enabled, the interval at which to scan for new arrivals
+SCAN_INTERVAL = 60.0
+
+If auto-delivery is enabled, the range over which to scan for new arrivals
+RANGE = 20.0
+
+If you want to display a group invitation url, set this to the group's key
+GROUP_KEY =
+
+The text to display preceding the group invitation url
+GROUP_MESSAGE = Click here to join our group:
+
+Whether to display the hover text
+HOVER_TEXT = TRUE
+
+Depth of the sign in meters
+DEPTH = 0.01
+
+Width of the sign in meters
+WIDTH = 4.0
+
+Height of the sign in meters
+HEIGHT = 8.4
+
+Texture to display on front of sign - can be the name of a texture in the
+sign's inventory or a texture uuid
+TEXTURE_FRONT = 42cee9e5-fd85-636d-81f6-f8fb4141d921
+
+Texture to display on back of sign - can be the name of a texture in the
+sign's inventory or a texture uuid
+TEXTURE_BACK = c37cf05b-d1d4-cea9-20a0-fcaf389e1961
+
+If TRUE, deliver a notecard when touched. If FALSE, do not
+GIVE_NOTECARD = TRUE
+
+If TRUE, deliver a landmark when touched. If FALSE, do not
+GIVE_LANDMARK = TRUE
+
+If TRUE, deliver an object when touched. If FALSE, do not
+GIVE_OBJECT = TRUE
+
+If TRUE, deliver a texture when touched. If FALSE, do not
+GIVE_TEXTURE = TRUE
+
+If TRUE, deliver a sound when touched. If FALSE, do not
+GIVE_SOUND = TRUE
+
+If TRUE, deliver a clothing item when touched. If FALSE, do not
+GIVE_CLOTHING = TRUE
+
+If TRUE, deliver a body part when touched. If FALSE, do not
+GIVE_BODYPART = TRUE
+
+If TRUE, deliver an animation when touched. If FALSE, do not
+GIVE_ANIMATION = TRUE
+
+If TRUE, deliver a gesture when touched. If FALSE, do not
+GIVE_GESTURE = TRUE
+
+If TRUE, deliver a script when touched. If FALSE, do not
+GIVE_SCRIPT = TRUE
+
+Name of notecard to deliver. If not set, deliver first notecard in inventory
+that is not the Config notecard
+NOTECARD =
+
+Name of landmark to deliver. If not set, deliver first landmark in inventory
+LANDMARK =
+
+Name of object to deliver. If not set, deliver first object in inventory
+OBJECT =
+
+Name of texture to deliver. If not set, deliver first texture in inventory. Note that if you add textures to the contents to customize the front and back of the sign that these textures will not be delivered. If you wish deliver the sign front or back texture then add those to an object for delivery.
+TEXTURE =
+
+Name of sound to deliver. If not set, deliver first sound in inventory
+SOUND =
+
+Name of clothing item to deliver. If not set, deliver first clothing item
+CLOTHING =
+
+Name of body part to deliver. If not set, deliver first body part in inventory
+BODYPART =
+
+Name of animation to deliver. If not set, deliver first animation in inventory
+ANIMATION =
+
+Name of gesture to deliver. If not set, deliver first gesture in inventory
+GESTURE =
+
+Name of script to deliver. If not set, deliver first script in inventory
+that is not the Rotating Sign script. Note that if you add a script for delivery that you should set it to "Not Running" or box it up and deliver it as an object instead.
+SCRIPT =
+
+USAGE
+
+The default setting is to greet new arrivals with a message informing them to touch the sign to receive the delivery items. Auto delivery is a Config notecard option. You can also disable the scan for new arrivals to configure the sign to passively deliver items when touched.
+
+FURTHER INFORMATION
+
+The Truth & Beauty Lab creates a variety of scripted objects including artificially intelligent 3D animated avatar bots that can query Wikipedia, provide answers from Wolfram Alpha, greet new arrivals, deliver notecards & landmarks, scan the area for objects and avatars producing a detailed report, follow their owner, emit magnificent particle displays, forward incoming email to IM's, and more.
+
+Pandorabots and METAbolt Add-Ons can be purchased on the Second Life Marketplace at http://tinyurl.com/26yfkab
+
+Download PDF format versions of the Pandorabots Owner Manual,  Pandorabots User Guide,  Pandorabot Diagram,  Pandorabot Actorbot Add-On Manual, and Pandorabot METAbolt Add-On Manual  at http://www.scribd.com/missyrestless
+
+Visit the Pandorabots Blog at http://pandorabot.blogspot.com where you can find many tutorials on setup, deployment, and configuration of Pandorabots, Actorbot and METAbolt Add-Ons, and How-To's at http://pandorabot.blogspot.com/p/how-to.html 
+
+Read my Second Life blog at http://missyrestless.blogspot.com
+
+See my YouTube videos at http://www.youtube.com/user/missyrestless
+
+Check out my Second Life Wiki user page at http://wiki.secondlife.com/wiki/User:Missy_Restless
+
+Email missyrestless@gmail.com with any questions, comments, suggestions, etc.
+
+View other Truth & Beauty Lab creations in the Second Life Marketplace at http://tinyurl.com/2bq6o3p

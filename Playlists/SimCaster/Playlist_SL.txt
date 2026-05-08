@@ -1,0 +1,11 @@
+# Second Life playlists for SimCaster Easy Streaming TV and Spherical Theater
+#
+# Format:
+# Button Name|Youtube Video Name|YourTubeURL
+# Example format:
+# Immersive Experience | Immersive Experience - Mecca of Ancient Astronomy | https://youtu.be/oDP3arqFj7c
+Asciiville | Asciiville | https://youtube.com/playlist?list=PLh3A0cnoWYswaNiG_9WGX2q5L5GpxUZuF&si=KuQbCajthUu1ZtKS
+SL | SLHamlet Cull | https://youtube.com/playlist?list=PLFA47CC047D046877&si=K2vZRehhjTA1UC6p
+SL Inner Spheres | Inner Spheres Demonstrations | https://youtube.com/playlist?list=PLAD98F1F74C55121E&si=tb0jTo87Raj0DgbT
+SL Machinima | Second Life Machinima | https://youtube.com/playlist?list=PL258A16454DB2BC27&si=3II1HWIsJDqp3moC
+SL Plus | More SL | https://youtube.com/playlist?list=PLAE62584D888167A7&si=bOfUBfilQUCqP055

@@ -1,0 +1,10 @@
+# Uncomment to enable debug mode
+#DEBUG = TRUE
+# LifeBots Bot Name
+# DO NOT surround the Bot Name with single or double quotes
+LB_BOT_NAME = Bot Name
+# Channel to listen on
+LISTEN_CHANNEL = -7742001
+# DO NOT remove END_SETTINGS line
+END_SETTINGS
+# The settings prior to END_SETTINGS are all that is read and used.

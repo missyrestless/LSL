@@ -1,0 +1,39 @@
+END_SETTINGS
+#
+# Configuration notecard for the Email2IM script.
+# Settings are specified in the format "<name> = <value>"
+# DO NOT use "=" in either the <name> or <value>
+# Place any uncommented configuration settings above the END_SETTINGS
+# line above. Lines below END_SETTINGS will not be read and are here
+# for information and help configuring.
+#
+# These comments can be left in the notecard without adversely effecting
+# performance as the script stops reading the notecard when it hits the
+# END_SETTINGS line so we can put as many comments here as we want.
+#
+# The interval (in seconds) at which to check for new email and change shape
+#INTERVAL = 120.0
+#
+# The interval at which the object changes shape (in multiples of INTERVAL).
+# The default is 1 which means shape changes occur every INTERVAL seconds. A
+# value of 3 would mean shape changes occur every (3 * INTERVAL) seconds. A
+# value of 0 disables shape and texture changes.
+#MULTIPLE = 1
+#
+# Whether to display the hover text over the object
+#HOVER_TEXT = TRUE
+#
+# Should the prim rotate ?
+#ROTATE = TRUE
+#
+# Restrict incoming emails to only those from this address
+#SENDER = you@your.com
+#
+# If you just want a small static box set this to TRUE. If you want the prim
+# to rotate and change textures/shape then leave it commented out. Setting this
+# to TRUE also sets MULTIPLE above to 0 and SIZE below to small.
+#SIMPLE = FALSE
+#
+# Some size defaults. This can be set to tiny, small, medium, large, XL, or XXL
+# which will size the prim to 0.1, 0.5, 1.0, 2.0, 3.0, or 4.0 meters on a side
+#SIZE = large

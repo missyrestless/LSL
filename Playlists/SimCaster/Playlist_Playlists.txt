@@ -1,6 +1,6 @@
 # Playlist of playlists for SimCaster Easy Streaming TV and Spherical Theater
 #
-# Contributed by SL resident Doc Rae
+# Contributions by SL residents Doc Rae & Missy Restless
 #
 # Format:
 # Button Name|Youtube Video Name|YourTubeURL
@@ -30,6 +30,7 @@ Funny | Funny Videos | https://youtube.com/playlist?list=PL18EB12D7FC58EBD8&si=a
 Girls | Girls | https://youtube.com/playlist?list=PLeUc4oWn7RNkC93HQVLFq0k49d6UhYtOZ&si=-Rz-7aigkaF2TDdX
 Girls More | More Girls | https://youtube.com/playlist?list=PL3CA8BE05FE05D7BC&si=JkCgMJb8EpTWfoSQ
 Gorillaz | Gorillaz | https://youtube.com/playlist?list=PLh3A0cnoWYsxIjrBQu-a30mi7MdzkjPwO&si=CDsZJvTIECdC5VNE
+Green Day | Green Day | https://youtube.com/playlist?list=PLeUc4oWn7RNmDI3t29vHQjdI6C3q9TpP-&si=v3B11jHIMfW_ux0a
 Hans Zimmer | Hans Zimmer | https://youtube.com/playlist?list=PLh3A0cnoWYsw7XsMYxYxeZYhCCpmGs_Ow&si=smBjsz_nJKFZ-WFb
 Jellyfish | Jellyfish | https://youtube.com/playlist?list=PLh3A0cnoWYswOiXdtJgYc04kmjI7NHBN0&si=KVGyMp409FMJVnUX
 J/K-Pop | J-Pop K-Pop | https://youtube.com/playlist?list=PLh3A0cnoWYsxyAMxWpUKswHWpQlrNZ-_J&si=M1nYEJOlcuIGSlSd
@@ -51,6 +52,7 @@ QOTSA | Queens of the Stone Age | https://youtube.com/playlist?list=PLh3A0cnoWYs
 Rufus Wainwright | Rufus Wainwright | https://youtube.com/playlist?list=PLh3A0cnoWYsykrSGVm0Cq5Xc_AXh-Fw-f&si=PnBaNBNU1OxpNb3h
 Sean Lennon | Sean Lennon - selections from Friendly Fire | https://youtube.com/playlist?list=FL-Rx3CLvNzwzn9khD2hSRFQ&si=MPIadK4W7aTq7OSh
 SOFI TUKKER | SOFI TUKKER | https://youtube.com/playlist?list=PLh3A0cnoWYsynpR9bhDtDzpd8iYRXZulp&si=ew8wH1vb52fPvOqN
+DJ SOFI TUKKER | SOFI TUCKER Live DJ Sets | https://youtube.com/playlist?list=PLeUc4oWn7RNn1AJIhr_xjvGUS7yWXIDfI&si=N9BDNkMW9oukKNap
 Trance | Trance | https://youtube.com/playlist?list=PL6DAF152F352A8561&si=LJt0X1vsN4xD2cCh
 TV Series | TV Series Opening Titles | https://youtube.com/playlist?list=PLh3A0cnoWYsyh-2l1bEJlFIzl_5gtlcwZ&si=iRhMvCWHs3Vl82HF
 Ween | Ween | https://youtube.com/playlist?list=PLFB0C446AD473FC86&si=rSE_jS90jJZpafpG

@@ -1,4 +1,4 @@
-# Playlist of playlists for SimCaster Easy Streaming TV and Spherical Theater
+# Playlist of favorite playlists for SimCaster Easy Streaming TV and Spherical Theater
 #
 # Contributions by SL residents Doc Rae & Missy Restless
 #
@@ -6,38 +6,21 @@
 # Button Name|Youtube Video Name|YourTubeURL
 # Example format:
 # Immersive Experience | Immersive Experience - Mecca of Ancient Astronomy | https://youtu.be/oDP3arqFj7c
-ABBA | ABBA | https://youtube.com/playlist?list=PLh3A0cnoWYsxsN-N7ZIXusvHnUm7J89c8&si=-GBP6MNYxz7cwsG9
 Animation | Animation | https://youtube.com/playlist?list=PLh3A0cnoWYswDXQzIV_OlAoI1a-mFfuXw&si=i5KBHFkTBUvGey1k
-BABYMETAL | BABYMETAL | https://youtube.com/playlist?list=PLh3A0cnoWYszqUEL3AH0J9F4aIOTi4DAl&si=T9O13Hnf4l7C7zn3
-Bad Religion | Bad Religion | https://www.youtube.com/watch?v=v-D-fn-Z04w&list=PLn3jR-qEn33IN2FRuVGRbEQfud45Dq6Th
-Beatles | The Beatles | https://youtube.com/playlist?list=PLh3A0cnoWYszUQFlx6TnS816ubFRFugqV&si=m9QGrMN_Toe2eAio
-Beck | Beck | https://youtube.com/playlist?list=PLh3A0cnoWYswXl8rCQeVbSGzKKC44AxLh&si=dtlYvPe9GGOr7JZX
 Bomba Estéreo | Bomba Estéreo | https://youtube.com/playlist?list=PLh3A0cnoWYsx1FV73908msCq4k-IKTnhr&si=FmvjJ98q4-xOHj9C
 Bowie | David Bowie | https://youtube.com/playlist?list=PLh3A0cnoWYsz3VA1yyE2Qyn_R17vnyQFw&si=pDk8YAHNXY3CL6Y7
 Britney Plus | Britney Spears and Friends | https://youtube.com/playlist?list=PLh3A0cnoWYsyOImFMxfMldJFql9YRFUxZ&si=zH3VP-8s5IYFHRuJ
 CAKE | Cake | https://youtube.com/playlist?list=PL575DFB88A40C099F&si=DHxdrktsw2Vd1itG
-Concerts | Full live concert performances | https://youtube.com/playlist?list=PLh3A0cnoWYsyO6gzfQ-3O_SqPH3nc899G&si=cNE3DGgr7OPHlTYj
-The Coral | The Coral | https://youtube.com/playlist?list=PLh3A0cnoWYsyTiT0OJsn5vSbiUOIyL3Pw&si=87ryFrhTIH-c-Fp1
-# Age restricted YouTube videos will not play except on YouTube
-# Dancing | Dancing | https://youtube.com/playlist?list=PLh3A0cnoWYszYfEAw673Grr9HuVvb8Uxh&si=uTLl1PoExQk1gFp5
 ELO | ELO | https://youtube.com/playlist?list=PLh3A0cnoWYsyb3QOvDf5Ui_xQSBVWs5Vs&si=qKhmOR2WTshU54TS
 EV Warning | Evanescence & The Warning | https://youtube.com/playlist?list=PLh3A0cnoWYszb7E_AKH6BO8TgH4uegVMi&si=LczOgWQPrZV4kORE
 FJM | Father John Misty | https://youtube.com/playlist?list=PLh3A0cnoWYsyG8eTS9UWMWmy-E8XHcqii&si=niMWqG-CW7B67hcw
-Fractals | Fractals | https://youtube.com/playlist?list=PLh3A0cnoWYsw8DjTSanMAcmOhcoxqPyNx&si=lW-3deEd7bJkHDZD
-Fun Cool | Fun Cool Hot | https://youtube.com/playlist?list=PL5CD94AE42038A7B7&si=nrCaBKVPXkWAYNz5
-Funny | Funny Videos | https://youtube.com/playlist?list=PL18EB12D7FC58EBD8&si=aBYwCLLu_FqdASc8
 Girls | Girls | https://youtube.com/playlist?list=PLeUc4oWn7RNkC93HQVLFq0k49d6UhYtOZ&si=-Rz-7aigkaF2TDdX
-Girls More | More Girls | https://youtube.com/playlist?list=PL3CA8BE05FE05D7BC&si=JkCgMJb8EpTWfoSQ
 Gorillaz | Gorillaz | https://youtube.com/playlist?list=PLh3A0cnoWYsxIjrBQu-a30mi7MdzkjPwO&si=CDsZJvTIECdC5VNE
 Green Day | Green Day | https://youtube.com/playlist?list=PLeUc4oWn7RNmDI3t29vHQjdI6C3q9TpP-&si=v3B11jHIMfW_ux0a
-Hans Zimmer | Hans Zimmer | https://youtube.com/playlist?list=PLh3A0cnoWYsw7XsMYxYxeZYhCCpmGs_Ow&si=smBjsz_nJKFZ-WFb
 Jellyfish | Jellyfish | https://youtube.com/playlist?list=PLh3A0cnoWYswOiXdtJgYc04kmjI7NHBN0&si=KVGyMp409FMJVnUX
-J/K-Pop | J-Pop K-Pop | https://youtube.com/playlist?list=PLh3A0cnoWYsxyAMxWpUKswHWpQlrNZ-_J&si=M1nYEJOlcuIGSlSd
-JWZ Mix | JWZ Mixtape | https://youtube.com/playlist?list=PL1E7BB01634741E82&si=EGj-HBGB7JrDSc5v
 Kat DeLuna | Kat DeLuna | https://youtube.com/playlist?list=PLh3A0cnoWYsw_ySbsw7tLoy6K9XO1z3B2&si=XY4YrOIQYFy5-ZLR
 Killers | The Killers | https://youtube.com/playlist?list=PLeUc4oWn7RNljaw8j7Cu8-G1SBp9RuFWB&si=80gcB0FrInZEUFCX
 LSD | LSD | https://youtube.com/playlist?list=PLTu_mo3y42N3OZ9y9C7FeWFWeaqCTJK56&si=k5ATWPaAdrqGjRKo
-Manassas | Manassas | https://youtube.com/playlist?list=PLh3A0cnoWYswvt_J1bnOWSnvsA8mOGo5c&si=2hZ1UX45NRjYPUnt
 Marcy | Marcy Playground | https://youtube.com/playlist?list=PL06B1DE0E0C8DAA90&si=wxAeFaswjH-_RXdM
 Metric | Metric | https://youtube.com/playlist?list=PLh3A0cnoWYsyf6jZ48lDhLSpGUThoba5r&si=4K2z6QzFMy6vfzN4
 Miley | Miley Cyrus Covers | https://youtube.com/playlist?list=PLh3A0cnoWYszgf0WOCdF-xghoPaWSi3M3&si=YrGu-UleDxM-0T7B
@@ -46,14 +29,7 @@ Muse | Muse | https://youtube.com/playlist?list=PL48ED85D54606D0B8&si=2SW_H-DvoY
 Organ | Organ Performances | https://youtube.com/playlist?list=PLh3A0cnoWYsyUfI2QWhYD6AfUbZluU4xy&si=6LIbjyw0kUIcbbeS
 PATD | Panic! At The Disco | https://youtube.com/playlist?list=PLeUc4oWn7RNl54Wz_dT3Td3vxMQkDu7kj&si=S3l9EXPAUUbO90KH
 Polo & Pan | Polo & Pan | https://youtube.com/playlist?list=PLh3A0cnoWYsxV1_GfD1neSbK8VkHHNY_e&si=YKuZqL4mv1D2C0hL
-Psy | Psy Trance | https://youtube.com/playlist?list=PL37257074D2E5A7D2&si=AJ1wh18wKu5GCE1d
 QOTSA | Queens of the Stone Age | https://youtube.com/playlist?list=PLh3A0cnoWYsygnJNOzlWCXlxJ9D5icGBa&si=v1x3mjur1bLEWtCd
-Rufus Wainwright | Rufus Wainwright | https://youtube.com/playlist?list=PLh3A0cnoWYsykrSGVm0Cq5Xc_AXh-Fw-f&si=PnBaNBNU1OxpNb3h
-Sean Lennon | Sean Lennon - selections from Friendly Fire | https://youtube.com/playlist?list=FL-Rx3CLvNzwzn9khD2hSRFQ&si=MPIadK4W7aTq7OSh
 SOFI TUKKER | SOFI TUKKER | https://youtube.com/playlist?list=PLh3A0cnoWYsynpR9bhDtDzpd8iYRXZulp&si=ew8wH1vb52fPvOqN
 DJ SOFI TUKKER | SOFI TUCKER Live DJ Sets | https://youtube.com/playlist?list=PLeUc4oWn7RNn1AJIhr_xjvGUS7yWXIDfI&si=N9BDNkMW9oukKNap
-Trance | Trance | https://youtube.com/playlist?list=PL6DAF152F352A8561&si=LJt0X1vsN4xD2cCh
-TV Series | TV Series Opening Titles | https://youtube.com/playlist?list=PLh3A0cnoWYsyh-2l1bEJlFIzl_5gtlcwZ&si=iRhMvCWHs3Vl82HF
-Ween | Ween | https://youtube.com/playlist?list=PLFB0C446AD473FC86&si=rSE_jS90jJZpafpG
 Weyes Blood | Weyes Blood | https://youtube.com/playlist?list=PLh3A0cnoWYswpP_E34uPOf88zz-QPmaUg&si=cUPzkGI0KkPsHE67
-Wow | Wow | https://youtube.com/playlist?list=PL0EBA8D0577378A9A&si=wGsbKwCSYOXxgRsA

@@ -46,7 +46,7 @@ default
     state_entry()
     {
         given = 0;
-        llOwnerSay("You may have up to 100 textures in object for slideshow.\nBe sure to only have one landmark and/or one notecard in inventory to be given on touch.");
+        llOwnerSay("You may have up to 100 textures in object for SlideShow.\nBe sure to only have one landmark and/or one notecard in inventory to be given on touch.");
         llOwnerSay("Touch for Owner Controls and more information.");
     }
     

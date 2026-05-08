@@ -7,8 +7,6 @@ You can copy, modify, transfer, and sell these scripts.
 
 ## Repository Contents
 
-* `Email2IM`: relay an incoming email message body via IM to the email Subject
-* `ReservationSystem`: dialog menu based reservation system
 * `RotatingSign`: rotating sign
 * `Slideshow`: slideshow
 * `Speak`: simple voice system for SL

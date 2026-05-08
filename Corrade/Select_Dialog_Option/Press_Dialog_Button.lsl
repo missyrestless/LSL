@@ -2,6 +2,7 @@
 //  Copyright (C) 2013-2015 Wizardry and Steamworks  //
 //  Copyright (C) 2025      Truth & Beauty Lab       //
 //  License: CC BY 2.0                               //
+//  https://creativecommons.org/licenses/by/2.0/     //
 ///////////////////////////////////////////////////////
 //
 // Create a notecard named Config_Press:

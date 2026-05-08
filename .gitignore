@@ -4,6 +4,9 @@ tmp/
 *.swp
 *~.nib
 
+# Source animated GIFs
+Media/Gif/
+
 # Private scripts, do not add or commit
 Private/
 

@@ -1,0 +1,19 @@
+This version of the Restless Studio vendor is networked and ready to go, now recompiled for MONO.
+
+Enhancements in my version:
+
+* The vendor is secure for distribution to your on-sellers, provided you make all of the scripts and settings in the vendors 'No Modify'.
+* It enables up to 3 income splits so that you can receive payments even when other avatars own the vendor.
+* The vendor will become disabled if it has been deeded to a group (which would otherwise disable payment of your cut).
+* You can choose whether to provide the same or separate info cards for each product in the server.
+* You can receive an email for every sale giving purchaser details.
+
+Most of the enhancements in this version are posted in the SL Forums.  I sell this package because it is set up and ready to go with very little work or understanding necessary to install it, and I will provide some basic help in IM.  See the Product Info notecard in the server for more detail on how to set it up to work for you.
+
+I have used this version of the vendor for a while now and have had no problems, however I cannot guarantee that this package is fit for any purpose, stated or implied.
+
+Missy Restless
+March 2011
+
+
+

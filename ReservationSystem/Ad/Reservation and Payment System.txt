@@ -1,0 +1,33 @@
+Store owner & designer: Missy Restless
+Store URL: https://marketplace.secondlife.com/stores/44210
+Inworld demos: http://slurl.com/secondlife/Gualdo/204/224/43
+Blogs: http://missyrestless.blogspot.com (Fashion & Product reviews)
+       http://pandorabot.blogspot.com (Second Life Pandorabots)
+
+Reservation & Payment System - L$495
+https://marketplace.secondlife.com/p/Reservation-with-Payment-System/1976778
+
+The Restless Studio Reservation System provides an easy to use dialog menu interface allowing visitors to book a reservation date, time, and destination or event. The owner can set individual schedules and prices for each destination or event. The reservation is booked when the reservation board receives payment equal to or greater than the price for the event. Notice of the reservation is sent to the owner via Instant Message and, if configured, Email. The visitor also receives an Instant Message and dialog informing them that their reservation has been booked. The Reservation System owner can configure the destination/event names, prices, default price, email address, hover text, board texture, dialog menu text, days of week to display, and times of day to display. This document is available in PDF format at http://www.scribd.com/missyrestless
+
+The Reservation System package contains:
+
+    * Three preconfigured reservation boards (airline, event, and escort)
+    * The Reservation System Owners Manual
+    * Sample configuration notecards for airline, event, and escort bookings
+    * A landmark to the demonstration Reservation Board at Restless Studio
+
+The owner can configure the default settings for:
+
+    * Destination/event/service names
+    * Price for each destination/event/service
+    * Default price
+    * Hover text to display
+    * Texture to use on the board's front and back sides
+    * Dialog menu text
+    * Name of the reservation board
+    * Type of activity bookings are offered for
+    * Days of the week to accept reservation requests
+    * Times of day to accept reservation requests
+    * Email address to use when notifying the owner of a request
+
+The Reservation System Owner's Manual and other Restless Studio manuals are available in PDF format at http://www.scribd.com/missyrestless

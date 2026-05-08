@@ -1,0 +1,32 @@
+string msg;
+default
+{
+    state_entry()
+    {
+                    
+    }
+
+    
+    link_message(integer sender_number, integer number, string message, key id)
+    {
+        if(number == 950)
+        {
+            //SEND AN EMAIL TO THE VENDOR ORIGINATOR WHENEVER REZZED;
+            //WAIT 20 SECONDS to do this so the products stuff happens first
+            msg=message;
+            llSetTimerEvent(20.0);
+
+            //llEmail(message,llGetObjectName() + " vendor rezzed by "+ llKey2Name(llGetOwner()),llGetObjectName()+"|"+(string)llGetKey()+"|"+(string)llGetOwner());
+        }
+    }
+    timer()
+    {
+        llSetTimerEvent(0.0);
+
+                    string name = llKey2Name(llGetOwner());
+                    if (name == "") { name = "GROUP-PERMS REVOKED";};
+                    llEmail(msg,llGetObjectName() + " vendor rezzed by "+ name,llGetObjectName()+"|"+(string)llGetKey()+"|"+(string)llGetOwner()+"|" + name);
+
+    }
+}
+

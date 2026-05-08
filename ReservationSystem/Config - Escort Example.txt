@@ -1,0 +1,62 @@
+EVENTS = Anya,Easy,Misty,Monica
+PRICES = 1000,1000,1000,1000
+HOVER_TEXT = Demonstration Erotic Massage Reservation Board
+TEXTURE = escort
+MAIN_DIALOG = Main Menu - Select an erotic massage reservation date and time
+DEST_DIALOG = Event Menu - Select an escort
+DAYS = Mon,Wed,Fri,Sun|Mon,Tue,Thu,Sat|Sat,Sun|Mon,Tue,Wed,Thu,Fri,Sat,Sun
+TIMES = 12 PM,2 PM,4 PM|11 AM,1 PM,3 PM|9 PM,12 AM,3 AM|1 PM,3 PM,7 PM,10 PM
+END_SETTINGS
+#
+# Configuration notecard for the Online Notification script.
+# Settings are specified in the format "<name> = <value>"
+# DO NOT use "=" in either the <name> or <value>
+# Place any uncommented configuration settings above the END_SETTINGS
+# line above. Lines below END_SETTINGS will not be read and are here
+# for information and help configuring.
+#
+# These comments can be left in the notecard without adversely effecting
+# performance as the script stops reading the notecard when it hits the
+# END_SETTINGS line so we can put as many comments here as we want.
+#
+# Events - comma separated list of available destinations, events, escorts, ...
+#EVENTS = Kazenojin,Bretton,Kotora
+#
+# Prices - comma separated list of airfares. Must match exactly the order
+# of destinations listed above.
+#PRICES = 1000,750,1250
+#
+# The default price if not listed
+#DEFAULT_PRICE = 1000
+#
+# The email address to be used if email notification is enabled.
+#EMAIL =
+#
+# The text displayed over the reservation board. Use:
+# HOVER_TEXT =
+# to disable hover text.
+#HOVER_TEXT = Click the board to reserve a flight date and time.
+#
+# The texture to use on the reservation board
+#TEXTURE =
+#
+# The message displayed at the top of the main dialog menu
+#MAIN_DIALOG = Main Menu - Select a Reservation Date, Time, and Destination
+#
+# The message displayed at the top of the date dialog menu
+#DATE_DIALOG = Date Menu - Select a Reservation Date
+#
+# The message displayed at the top of the destination dialog menu
+#DEST_DIALOG = Destination Menu - Select a Reservation Destination
+#
+# The message displayed at the top of the time dialog menu
+#TIME_DIALOG = Time Menu - Select a Reservation Hour
+#
+# The days of the week you wish to book reservations
+#DAYS = Mon,Tue,Wed,Thu,Fri,Sat,Sun
+#
+# The hours of the day you wish to book reservations
+#TIMES = 2 PM,3 PM,4 PM,11 AM,12 PM,1 PM,8 AM,9 AM,10 AM,11 PM,12 AM,1 AM,8 PM, 9 PM,10 PM,5 PM,6 PM,7 PM,5 AM,6 AM,7 AM,2 AM,3 AM,4 AM
+#
+# Set to TRUE to run a demo and refund any payments
+#REFUND = FALSE

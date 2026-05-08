@@ -1,0 +1,16 @@
+SPLIT = 0
+PERSON ONE (for a split between you and a shop owner, this is your own key, use the 'key getter' included in the package):
+SPLIT 1 KEY = XXXXX-XXXXX-XXXXX-XXXXX
+PERSON TWO (TEMP DISABLED - change ~ to = to re-establish)
+SPLIT 2 KEY ~ XXXXX-XXXXX-XXXXX-XXXXX
+PERSON THREE (TEMP DISABLED - change ~ to = to re-establish)
+SPLIT 3 KEY ~ XXXXX-XXXXX-XXXXX-XXXXX
+if split 1 flat is 0 then split 1 amount is a percentage, otherwise it is a flat figure (eg, $10 rather than 10%)
+SPLIT 1 FLAT = 0
+SPLIT 2 FLAT ~ 0
+SPLIT 3 FLAT ~ 0
+This is the amount you want back - the owner will retain the rest
+SPLIT 1 AMOUNT =90
+SPLIT 3 AMOUNT  ~ 10
+SPLIT 2 AMOUNT  ~ 15
+

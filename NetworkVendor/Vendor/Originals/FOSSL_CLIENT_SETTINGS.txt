@@ -1,0 +1,8 @@
+info card = Product Information Card
+separate info = 0
+buffer = 20
+email agents = 1
+server=4fbd8878-ea5d-52bc-5e65-d18c08e6184b
+owner=xxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx
+email=youremail@hotmail.com
+

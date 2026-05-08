@@ -1,0 +1,63 @@
+About...
+
+Restless Studio Vendor v2
+=========================
+
+(c)2007 Ilobmirt Tenk
+(c)2011 Missy Restless
+
+=========
+Licensing
+=========
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published 
+    by the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+========
+Overview
+========
+
+    Restless Studio Vendor is a vendor tailored to the needs of the common virtual entrepreneur, yet without the implications of cost up front or by commission. Though future releases of this program are aimed to make the system easier to manage, more efficient, and less of a hassle to setup, Ideal users of this vending system should be well informed on how many modern vending systems operate.
+
+================
+Current Features
+================
+
+Restless Studio Vendor is capable of the following...
+
+    * Selling a Displayed object in-world
+    * Can operate as a Standalone unit or Network through an in-world server
+    * Notecard configured (Source code editing no longer necessary)
+    * Multi Panels (Vendor can display more than one product at a time)
+    * Buffered memory (Vendor will not run out of memory no matter how many products are being sold)
+    * Multi Category vending
+    * Controllable via, verbal commands
+        a) count
+        b) debug
+        c) reset
+        d) id
+        e) online
+        f) offline
+        g) memory
+    * Communication between vendor and server can be encrypted with a symmetric key
+    * Catalog Vending Possible
+
+=========
+Wish List
+=========
+
+    * More memory efficient client vendor script
+    * Faster display update process
+    * Include a mechanism for in-world network vending fault tolerance in the event server uuid is lost
+    * Include a mechanism for profit sharing
+

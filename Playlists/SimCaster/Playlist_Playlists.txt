@@ -1,4 +1,6 @@
-# Playlist of playlists for Easy Streaming Spherical Theater
+# Playlist of playlists for SimCaster Easy Streaming TV and Spherical Theater
+#
+# Contributed by SL resident Doc Rae
 #
 # Format:
 # Button Name|Youtube Video Name|YourTubeURL

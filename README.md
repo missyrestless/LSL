@@ -8,4 +8,5 @@ Linden Scripting Language (LSL) scripts and configurations
 * `RotatingSign`: rotating sign
 * `Slideshow`: slideshow
 * `Utils`: LSL script utilities
+* `Playlists`: SL playlists
 * `firestorm.sh`: Bash script to front-end the Firestorm script on Mac and Linux

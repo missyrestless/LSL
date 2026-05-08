@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# firestorm - Second Life Firestorm viewer front-end startup script
+#
+# Written June 4, 2025 by Missy Restless <missyrestless@gmail.com>
 
 FSFE="/opt/Firestorm/firestorm"
 FMAC="/Applications/Firestorm-Releasex64.app/Contents/MacOS/Firestorm"

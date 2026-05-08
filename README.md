@@ -13,6 +13,7 @@ You can copy, modify, transfer, and sell these scripts.
 * `Utils`: LSL script utilities
 * `Playlists`: SL playlists
 * `firestorm.sh`: Bash script to front-end the Firestorm startup script on Mac and Linux
+* `view_chat.sh`: Bash script to view/search Firestorm chat and teleport logs on Mac and Linux
 
 The `Corrade` scripts for use with the Corrade scripted agent system
 has been moved to its own repository at:

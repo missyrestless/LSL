@@ -1,28 +1,92 @@
+// IM_When_Online - send an IM to the owner when the specified avatar logs on or off
+// Written 13-May-2026 by Missy Restless
+//
 // UUID of the avatar to track
 key TargetUuid = NULL_KEY;
 // Name of the avatar to track
-string TargetName = "";
+string TargetDisplayName = "";
 // How often to check in seconds (60s minimum recommended)
-float CheckInterval = 600.0; 
+float CheckInterval = 120.0; 
 // ---------------------
 // Default fallbacks if not set in configuration notecard
 key Default_Uuid = "3506213c-29c8-4aa1-a38f-e12f6d41b804";
-string Default_Name = "Missy Angel (missy.restless)";
 
 key AgentDataRequestID;
 integer IsOnline = FALSE; // Assume offline initially
-
+integer GetDisplayName = TRUE;
+integer Debug = FALSE;
 integer NotecardLine;
 string CONFIG_CARD = "Target_Config";
+string profileURL;
 key D_QueryID;
+key owner;
+key display_name_query;
+
+// Profile pic display vars
+list sides;
+list deftextures;
+
+string profile_key_prefix = "<meta name=\"imageid\" content=\"";
+string profile_img_prefix = "<img alt=\"profile image\" src=\"http://secondlife.com/app/image/";
+integer profile_key_prefix_length; // calculated from profile_key_prefix in state_entry()
+integer profile_img_prefix_length; // calculated from profile_key_prefix in state_entry()
+
+StatusUpdate() {
+    // Request online status data for the specified user key
+    if (Debug) {
+      llOwnerSay("Calling llRequestAgentData with TargetUuid = " + (string)TargetUuid);
+    }
+    AgentDataRequestID = llRequestAgentData(TargetUuid, DATA_ONLINE);
+    if (Debug) {
+      llOwnerSay("Return from llRequestAgentData with AgentDataRequestID = " + (string)AgentDataRequestID);
+    }
+}
+
+GetProfilePic(key id) //Run the HTTP Request then set the texture
+{
+    string URL_RESIDENT = "https://world.secondlife.com/resident/";
+    llHTTPRequest(URL_RESIDENT + (string)id,[HTTP_METHOD,"GET"],"");
+}
+
+GetDefaultTextures() // Get the default textures from each side
+{
+    integer    i;
+    integer    faces = llGetNumberOfSides();
+    for (i = 0; i < faces; i++)
+    {
+        sides+=i;
+        deftextures+=llGetTexture(i);
+    }
+}
+
+SetDefaultTextures() // Set the sides to their default textures
+{
+    integer    i;
+    integer    faces;
+    faces = llGetNumberOfSides();
+    for (i = 0; i < faces; i++)
+    {
+        llSetTexture(llList2String(deftextures,i),i);
+    }
+}
 
 init_target() {
-  if ((TargetUuid == NULL_KEY) || (TargetUuid == "target-avatar-uuid")) {
-    TargetUuid = Default_Uuid;
-  }
-  if ((TargetName == "") || (TargetName == "Target Avatar Name")) {
-    TargetName = Default_Name;
-  }
+    if ((TargetUuid == NULL_KEY) || (TargetUuid == "target-avatar-uuid")) {
+        TargetUuid = Default_Uuid;
+    }
+    if (GetDisplayName) {
+        display_name_query = llRequestDisplayName(TargetUuid);
+    } else {
+        llSay(0, "The display name of the target of this script : " + TargetDisplayName);
+    }
+    profileURL = "secondlife:///app/agent/" + (string)TargetUuid + "/about";
+    llOwnerSay("Tracking " + TargetDisplayName + " online status");
+    llSetText(TargetDisplayName + "\nChecking status...", <1.0, 1.0, 1.0>, 1.0); // Initial hover text
+    GetProfilePic(TargetUuid);
+    // Start monitoring immediately
+    llSetTimerEvent(CheckInterval);
+    // Do an initial check immediately
+    StatusUpdate();
 }
 
 default
@@ -33,6 +97,10 @@ default
 
     state_entry()
     {
+      owner = llGetOwner();
+      profile_key_prefix_length = llStringLength(profile_key_prefix);
+      profile_img_prefix_length = llStringLength(profile_img_prefix);
+      GetDefaultTextures();
       if (llGetInventoryType(CONFIG_CARD) == INVENTORY_NOTECARD) {
           NotecardLine = 0;
           D_QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
@@ -41,43 +109,73 @@ default
           llOwnerSay("Configuration notecard missing, using defaults.");
           init_target();
       }
-      // Start monitoring immediately
-      llSetTimerEvent(CheckInterval);
-      // Do an initial check immediately
-      AgentDataRequestID = llRequestAgentData(TargetUuid, DATA_ONLINE);
     }
 
     timer()
     {
       // Periodically check status
-      AgentDataRequestID = llRequestAgentData(TargetUuid, DATA_ONLINE);
+      StatusUpdate();
+    }
+
+    // Allows a touch to force an immediate update
+    touch_start(integer num) {
+      // Check if the first person who touched (index 0) is the owner
+      if (llDetectedKey(0) == owner)
+      {
+        StatusUpdate();
+      }
     }
 
     dataserver(key queryid, string data)
     {
-        list temp;
-        string name;
-        string value;
-
         if (queryid == AgentDataRequestID)
         {
-            integer CurrentlyOnline = (integer)data;
+            integer CurrentlyOnline;
 
-            // If they just came online and were previously offline
-            if (CurrentlyOnline && !IsOnline)
-            {
-                llInstantMessage(llGetOwner(), TargetName + " is now ONLINE.");
+            CurrentlyOnline = (integer)data;
+            if (Debug) {
+              llOwnerSay("In dataserver with CurrentlyOnline = " + (string)CurrentlyOnline);
+              llOwnerSay("IsOnline = " + (string)IsOnline);
             }
-            else if (!CurrentlyOnline && IsOnline)
+
+            // Requested data contains the string "0" or "1" for DATA_ONLINE
+            // Convert it to an integer and use the boolean as index
+            // list index = [   0,       1,     2(0+2), 3(1+2)  ]
+            list stat_cols = ["OFFLINE","ONLINE",<1,0,0>,<0,1,0>];
+
+            // Set hover text status and color
+            string status = llList2String(stat_cols, CurrentlyOnline);   // boolean/index = 0   or 1
+            vector color = llList2Vector(stat_cols, CurrentlyOnline+2);  // boolean/index = 0+2 or 1+2
+
+            // IM if status has changed
+            if (CurrentlyOnline)
             {
-                llInstantMessage(llGetOwner(), TargetName + " is now OFFLINE.");
+                if (!IsOnline)
+                {
+                    llInstantMessage(owner, profileURL + " is now ONLINE.");
+                }
             }
+            else
+            {
+                if (IsOnline)
+                {
+                    llInstantMessage(owner, profileURL + " is now OFFLINE.");
+                }
+            }
+            // Set hover text
+            if (Debug) {
+              llOwnerSay("Setting hover text with status = " + status);
+            }
+            llSetText(TargetDisplayName + "\nStatus: " + status, color, 1.0); // Update hover text and color
 
             // Update status
             IsOnline = CurrentlyOnline;
         }
         else if (queryid == D_QueryID)
         {
+            string name;
+            string value;
+            list temp;
             if ( data != EOF ) {
                 if (data == "END_SETTINGS") {
                     init_target();
@@ -93,13 +191,56 @@ default
                     if ( name == "TARGET_UUID" ) {
                         TargetUuid = (key)value;
                     } else if ( name == "TARGET_NAME" ) {
-                        TargetName = value;
+                        TargetDisplayName = value;
+                        GetDisplayName = FALSE;
                     } else if ( name == "CHECK_INTERVAL" ) {
                         CheckInterval = (float)value; 
+                    } else if ( name == "DEBUG" ) {
+                        Debug = (integer)value; 
                     }
                 }
                 NotecardLine++;
                 D_QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
+            }
+        }
+        else if (display_name_query == queryid)
+        {
+            TargetDisplayName = data;
+            llSay(0, "The display name of the target of this script : " + TargetDisplayName);
+        }
+    }
+
+    changed(integer change)
+    {
+         if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
+         {
+             llResetScript();
+         }
+    }
+
+    http_response(key req,integer stat, list met, string body)
+    {
+        integer s1 = llSubStringIndex(body, profile_key_prefix);
+        integer s1l = profile_key_prefix_length;
+        if(s1 == -1)
+        { // second try
+            s1 = llSubStringIndex(body, profile_img_prefix);
+            s1l = profile_img_prefix_length;
+        }
+
+        if(s1 == -1)
+        { // still no match?
+            SetDefaultTextures();
+        }
+        else
+        {
+            s1 += s1l;
+            key UUID=llGetSubString(body, s1, s1 + 35);
+            if (UUID == NULL_KEY) {
+                SetDefaultTextures();
+            }
+            else {
+                llSetTexture(UUID, ALL_SIDES);
             }
         }
     }

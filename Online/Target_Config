@@ -1,4 +1,13 @@
 TARGET_UUID = target-avatar-uuid
-TARGET_NAME = Target Avatar Name
-CHECK_INTERVAL = 600.0
 END_SETTINGS
+#
+# Optional settings, uncomment & move above END_SETTINGS to enable
+#
+# TARGET_NAME can be used to override the name displayed in hover text
+# TARGET_NAME = Target Avatar Name
+#
+# CHECK_INTERVAL is the time in seconds between online status checks
+# CHECK_INTERVAL = 120.0
+#
+# DEBUG turns on some debug output
+# DEBUG = FALSE

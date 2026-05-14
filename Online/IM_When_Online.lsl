@@ -17,10 +17,10 @@ string CONFIG_CARD = "Target_Config";
 key D_QueryID;
 
 init_target() {
-  if (TargetUuid == NULL_KEY) {
+  if ((TargetUuid == NULL_KEY) || (TargetUuid == "target-avatar-uuid")) {
     TargetUuid = Default_Uuid;
   }
-  if (TargetName == "") {
+  if ((TargetName == "") || (TargetName == "Target Avatar Name")) {
     TargetName = Default_Name;
   }
 }

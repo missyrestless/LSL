@@ -1,0 +1,4 @@
+TARGET_UUID = target-avatar-uuid
+TARGET_NAME = Target Avatar Name
+CHECK_INTERVAL = 600.0
+END_SETTINGS

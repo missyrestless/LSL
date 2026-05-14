@@ -3,6 +3,9 @@ END_SETTINGS
 #
 # Optional settings, uncomment & move above END_SETTINGS to enable
 #
+# HOVER_TEXT can be used to enable or disable display of hover text
+# HOVER_TEXT = TRUE
+#
 # TARGET_NAME can be used to override the name displayed in hover text
 # TARGET_NAME = Target Avatar Name
 #

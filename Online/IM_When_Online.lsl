@@ -15,17 +15,19 @@ key AgentDataRequestID;
 integer IsOnline = FALSE; // Assume offline initially
 integer GetDisplayName = TRUE;
 integer Debug = FALSE;
+integer HoverText = TRUE;
 integer NotecardLine;
 string CONFIG_CARD = "Target_Config";
-string profileURL;
 key D_QueryID;
 key owner;
 key display_name_query;
 
-// Profile pic display vars
-list sides;
-list deftextures;
+// Built-in white texture UUID
+string WHT_UUID = "5748decc-f629-461c-9a36-a35a221fe21f";
+vector RED = <1,0,0>;
+vector GRN = <0,1,0>;
 
+string profileURL;
 string profile_key_prefix = "<meta name=\"imageid\" content=\"";
 string profile_img_prefix = "<img alt=\"profile image\" src=\"http://secondlife.com/app/image/";
 integer profile_key_prefix_length; // calculated from profile_key_prefix in state_entry()
@@ -48,45 +50,59 @@ GetProfilePic(key id) //Run the HTTP Request then set the texture
     llHTTPRequest(URL_RESIDENT + (string)id,[HTTP_METHOD,"GET"],"");
 }
 
-GetDefaultTextures() // Get the default textures from each side
+SetSideTextures(vector col) // Set the sides to the online status texture
 {
     integer    i;
     integer    faces = llGetNumberOfSides();
-    for (i = 0; i < faces; i++)
-    {
-        sides+=i;
-        deftextures+=llGetTexture(i);
+    for (i = 0; i < faces; i++) {
+        if (i == 0) {
+            llSetColor(<1.0, 1.0, 1.0>, i);
+            if (col == RED) {
+                llSetPrimitiveParams([PRIM_FULLBRIGHT, i, FALSE]);
+            } else {
+                llSetPrimitiveParams([PRIM_FULLBRIGHT, i, TRUE]);
+            }
+        } else {
+            llSetTexture(WHT_UUID, i);
+            llSetColor(col, i);
+            llSetPrimitiveParams([PRIM_GLOW, i, 0.1]);
+        }
     }
 }
 
 SetDefaultTextures() // Set the sides to their default textures
 {
-    integer    i;
-    integer    faces;
-    faces = llGetNumberOfSides();
-    for (i = 0; i < faces; i++)
-    {
-        llSetTexture(llList2String(deftextures,i),i);
-    }
+    // Color the root prim red
+    llSetTexture(WHT_UUID, ALL_SIDES);
+    llSetColor(RED, ALL_SIDES);
 }
 
-init_target() {
-    if ((TargetUuid == NULL_KEY) || (TargetUuid == "target-avatar-uuid")) {
-        TargetUuid = Default_Uuid;
-    }
-    if (GetDisplayName) {
-        display_name_query = llRequestDisplayName(TargetUuid);
+profile_timer_init() {
+    if (HoverText) {
+        llSetText(TargetDisplayName + "\nChecking status...", <1.0, 1.0, 1.0>, 1.0); // Initial hover text
     } else {
-        llSay(0, "The display name of the target of this script : " + TargetDisplayName);
+        // Clear any previously set hover text
+        llSetText("", <0,0,0>, 0.0);
     }
-    profileURL = "secondlife:///app/agent/" + (string)TargetUuid + "/about";
-    llOwnerSay("Tracking " + TargetDisplayName + " online status");
-    llSetText(TargetDisplayName + "\nChecking status...", <1.0, 1.0, 1.0>, 1.0); // Initial hover text
     GetProfilePic(TargetUuid);
     // Start monitoring immediately
     llSetTimerEvent(CheckInterval);
     // Do an initial check immediately
     StatusUpdate();
+}
+
+init_target() {
+    SetDefaultTextures();
+    if ((TargetUuid == NULL_KEY) || (TargetUuid == "target-avatar-uuid")) {
+        TargetUuid = Default_Uuid;
+    }
+    profileURL = "secondlife:///app/agent/" + (string)TargetUuid + "/about";
+    if (GetDisplayName) {
+        display_name_query = llRequestDisplayName(TargetUuid);
+    } else {
+        llOwnerSay("Tracking " + profileURL + " online status");
+        profile_timer_init();
+    }
 }
 
 default
@@ -100,7 +116,6 @@ default
       owner = llGetOwner();
       profile_key_prefix_length = llStringLength(profile_key_prefix);
       profile_img_prefix_length = llStringLength(profile_img_prefix);
-      GetDefaultTextures();
       if (llGetInventoryType(CONFIG_CARD) == INVENTORY_NOTECARD) {
           NotecardLine = 0;
           D_QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
@@ -119,9 +134,11 @@ default
 
     // Allows a touch to force an immediate update
     touch_start(integer num) {
-      // Check if the first person who touched (index 0) is the owner
+      // Check if the first person who touched is the owner
       if (llDetectedKey(0) == owner)
       {
+        HoverText = !HoverText;
+        llOwnerSay("Tracking " + profileURL + " online status");
         StatusUpdate();
       }
     }
@@ -132,20 +149,21 @@ default
         {
             integer CurrentlyOnline;
 
+            // Requested data contains the string "0" or "1" for DATA_ONLINE
+            // Convert it to an integer and use the boolean as index
+            // list index = [   0,       1,     2(0+2), 3(1+2)  ]
+            list stat_cols = ["OFFLINE","ONLINE",RED,GRN];
+
             CurrentlyOnline = (integer)data;
             if (Debug) {
               llOwnerSay("In dataserver with CurrentlyOnline = " + (string)CurrentlyOnline);
               llOwnerSay("IsOnline = " + (string)IsOnline);
             }
 
-            // Requested data contains the string "0" or "1" for DATA_ONLINE
-            // Convert it to an integer and use the boolean as index
-            // list index = [   0,       1,     2(0+2), 3(1+2)  ]
-            list stat_cols = ["OFFLINE","ONLINE",<1,0,0>,<0,1,0>];
-
             // Set hover text status and color
-            string status = llList2String(stat_cols, CurrentlyOnline);   // boolean/index = 0   or 1
-            vector color = llList2Vector(stat_cols, CurrentlyOnline+2);  // boolean/index = 0+2 or 1+2
+            string stats = llList2String(stat_cols, CurrentlyOnline);   // boolean/index = 0   or 1
+            vector color = llList2Vector(stat_cols, CurrentlyOnline+2); // boolean/index = 0+2 or 1+2
+            SetSideTextures(color);
 
             // IM if status has changed
             if (CurrentlyOnline)
@@ -163,10 +181,12 @@ default
                 }
             }
             // Set hover text
-            if (Debug) {
-              llOwnerSay("Setting hover text with status = " + status);
+            if (HoverText) {
+              if (Debug) {
+                llOwnerSay("Setting hover text with status = " + stats);
+              }
+              llSetText(TargetDisplayName + "\nStatus: " + stats, color, 1.0); // Update hover text and color
             }
-            llSetText(TargetDisplayName + "\nStatus: " + status, color, 1.0); // Update hover text and color
 
             // Update status
             IsOnline = CurrentlyOnline;
@@ -195,6 +215,8 @@ default
                         GetDisplayName = FALSE;
                     } else if ( name == "CHECK_INTERVAL" ) {
                         CheckInterval = (float)value; 
+                    } else if ( name == "HOVER_TEXT" ) {
+                        HoverText = (integer)value; 
                     } else if ( name == "DEBUG" ) {
                         Debug = (integer)value; 
                     }
@@ -206,7 +228,8 @@ default
         else if (display_name_query == queryid)
         {
             TargetDisplayName = data;
-            llSay(0, "The display name of the target of this script : " + TargetDisplayName);
+            llOwnerSay("Tracking " + profileURL + " online status");
+            profile_timer_init();
         }
     }
 
@@ -240,7 +263,7 @@ default
                 SetDefaultTextures();
             }
             else {
-                llSetTexture(UUID, ALL_SIDES);
+                llSetTexture(UUID, 0);
             }
         }
     }

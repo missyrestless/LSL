@@ -4,10 +4,10 @@ END_SETTINGS
 # Optional settings, uncomment & move above END_SETTINGS to enable
 #
 # DISCORD_URL can be set to a Discord channel Webhook URL to send online status to Discord
-# DISCORD_URL = https://discord.com/api/webhooks/xxxxxx
+# DISCORD_URL = https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #
 # DISCORD_USER can be set to a Discord user or Discord bot, messages will appear to be from this user
-# DISCORD_USER = missyrestless_38642
+# DISCORD_USER = Discord IM Online Tracker
 #
 # IM_OWNER can be used to enable or disable Instant Message notification to the owner
 # IM_OWNER = TRUE

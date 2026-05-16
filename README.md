@@ -7,6 +7,7 @@ You can copy, modify, transfer, and sell these scripts.
 
 ## Repository Contents
 
+* [Online Tracker](Online/README.md): sends an IM and Discord message when configured Avatar logs in
 * `RotatingSign`: rotating sign
 * `Slideshow`: slideshow
 * `Speak`: simple voice system for SL

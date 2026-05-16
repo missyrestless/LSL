@@ -1,5 +1,9 @@
-// IM_When_Online - send an IM to the owner when the specified avatar logs on or off
+// Discord IM Online Tracker - send an IM to the owner and/or post to Discord when the configured avatar logs on or off
 // Written 13-May-2026 by Missy Restless
+//
+// MODIFICATION HISTORY
+// --------------------
+// 15-May-2026 - Add support for sending online status messages to a Discord channel
 //
 // UUID of the avatar to track
 key TargetUuid = NULL_KEY;
@@ -11,16 +15,29 @@ float CheckInterval = 120.0;
 // Default fallbacks if not set in configuration notecard
 key Default_Uuid = "3506213c-29c8-4aa1-a38f-e12f6d41b804";
 
-key AgentDataRequestID;
+// Key for agent data requests
+key agentDataRequestID = NULL_KEY;
+// Keys for HTTP requests
+key discordRequestID = NULL_KEY;
+key profileRequestID = NULL_KEY;
+
 integer IsOnline = FALSE; // Assume offline initially
 integer GetDisplayName = TRUE;
 integer Debug = FALSE;
 integer HoverText = TRUE;
 integer NotecardLine;
+// Should online status be sent to owner as an Instant Message
+integer IMowner = TRUE;
+// Should online status be broadcast to a Discord channel
+integer DiscordRelay = FALSE;
+string Discord_URL = "";
+string DiscordUser = "Discord IM Online Tracker";
+// The name of the configuration notecard
 string CONFIG_CARD = "Target_Config";
 key D_QueryID;
 key owner;
 key display_name_query;
+key name_query;
 
 // Built-in white texture UUID
 string WHT_UUID = "5748decc-f629-461c-9a36-a35a221fe21f";
@@ -28,6 +45,7 @@ vector RED = <1,0,0>;
 vector GRN = <0,1,0>;
 
 string profileURL;
+string webprofURL;
 string profile_key_prefix = "<meta name=\"imageid\" content=\"";
 string profile_img_prefix = "<img alt=\"profile image\" src=\"http://secondlife.com/app/image/";
 integer profile_key_prefix_length; // calculated from profile_key_prefix in state_entry()
@@ -38,16 +56,16 @@ StatusUpdate() {
     if (Debug) {
       llOwnerSay("Calling llRequestAgentData with TargetUuid = " + (string)TargetUuid);
     }
-    AgentDataRequestID = llRequestAgentData(TargetUuid, DATA_ONLINE);
+    agentDataRequestID = llRequestAgentData(TargetUuid, DATA_ONLINE);
     if (Debug) {
-      llOwnerSay("Return from llRequestAgentData with AgentDataRequestID = " + (string)AgentDataRequestID);
+      llOwnerSay("Return from llRequestAgentData with agentDataRequestID = " + (string)agentDataRequestID);
     }
 }
 
 GetProfilePic(key id) //Run the HTTP Request then set the texture
 {
     string URL_RESIDENT = "https://world.secondlife.com/resident/";
-    llHTTPRequest(URL_RESIDENT + (string)id,[HTTP_METHOD,"GET"],"");
+    profileRequestID = llHTTPRequest(URL_RESIDENT + (string)id,[HTTP_METHOD,"GET"],"");
 }
 
 SetSideTextures(vector col) // Set the sides to the online status texture
@@ -97,12 +115,28 @@ init_target() {
         TargetUuid = Default_Uuid;
     }
     profileURL = "secondlife:///app/agent/" + (string)TargetUuid + "/about";
+    name_query = llRequestUsername(TargetUuid);
     if (GetDisplayName) {
         display_name_query = llRequestDisplayName(TargetUuid);
     } else {
         llOwnerSay("Tracking " + profileURL + " online status");
         profile_timer_init();
     }
+}
+
+// Function to send the message to Discord
+sendToDiscord(string dm) {
+    // Create the JSON payload
+    string json = llList2Json(JSON_OBJECT, [
+        "username", DiscordUser, 
+        "content", dm
+    ]);
+
+    // Make the HTTP request to the Discord Webhook
+    discordRequestID = llHTTPRequest(Discord_URL, [
+        HTTP_METHOD, "POST", 
+        HTTP_MIMETYPE, "application/json"
+    ], json);
 }
 
 default
@@ -137,6 +171,10 @@ default
       // Check if the first person who touched is the owner
       if (llDetectedKey(0) == owner)
       {
+        if (HoverText) {
+          // Clears the hover text, sets color to black, and makes it 100% transparent
+          llSetText("", <0.0, 0.0, 0.0>, 0.0);
+        }
         HoverText = !HoverText;
         llOwnerSay("Tracking " + profileURL + " online status");
         StatusUpdate();
@@ -145,7 +183,7 @@ default
 
     dataserver(key queryid, string data)
     {
-        if (queryid == AgentDataRequestID)
+        if (queryid == agentDataRequestID)
         {
             integer CurrentlyOnline;
 
@@ -160,6 +198,8 @@ default
               llOwnerSay("IsOnline = " + (string)IsOnline);
             }
 
+            string status_pre = TargetDisplayName + " is now ";
+            string status_msg = "";
             // Set hover text status and color
             string stats = llList2String(stat_cols, CurrentlyOnline);   // boolean/index = 0   or 1
             vector color = llList2Vector(stat_cols, CurrentlyOnline+2); // boolean/index = 0+2 or 1+2
@@ -170,14 +210,36 @@ default
             {
                 if (!IsOnline)
                 {
-                    llInstantMessage(owner, profileURL + " is now ONLINE.");
+                    status_pre = status_pre + "ONLINE. Click to view profile: ";
+                    status_msg = status_pre + profileURL;
+                    if !(DiscordRelay || IMowner) {
+                        llOwnerSay(status_msg);
+                    } else {
+                        if (IMowner) {
+                            llInstantMessage(owner, status_msg);
+                        }
+                        if (DiscordRelay) {
+                            status_msg = status_pre + "[" + TargetDisplayName + "](" + webprofURL + ")";
+                            sendToDiscord(status_msg);
+                        }
+                    }
                 }
             }
             else
             {
                 if (IsOnline)
                 {
-                    llInstantMessage(owner, profileURL + " is now OFFLINE.");
+                    status_msg = status_pre + "OFFLINE.";
+                    if !(DiscordRelay || IMowner) {
+                        llOwnerSay(status_msg);
+                    } else {
+                        if (IMowner) {
+                            llInstantMessage(owner, status_msg);
+                        }
+                        if (DiscordRelay) {
+                            sendToDiscord(status_msg);
+                        }
+                    }
                 }
             }
             // Set hover text
@@ -217,6 +279,13 @@ default
                         CheckInterval = (float)value; 
                     } else if ( name == "HOVER_TEXT" ) {
                         HoverText = (integer)value; 
+                    } else if ( name == "DISCORD_URL" ) {
+                        Discord_URL = value;
+                        DiscordRelay = TRUE;
+                    } else if ( name == "DISCORD_USER" ) {
+                        DiscordUser = value;
+                    } else if ( name == "IM_OWNER" ) {
+                        IMowner = (integer)value; 
                     } else if ( name == "DEBUG" ) {
                         Debug = (integer)value; 
                     }
@@ -231,6 +300,10 @@ default
             llOwnerSay("Tracking " + profileURL + " online status");
             profile_timer_init();
         }
+        else if ( name_query == queryid )
+        {
+            webprofURL = "https://my.secondlife.com/" + data; 
+        }
     }
 
     changed(integer change)
@@ -241,29 +314,39 @@ default
          }
     }
 
-    http_response(key req,integer stat, list met, string body)
+    http_response(key req,integer status, list met, string body)
     {
-        integer s1 = llSubStringIndex(body, profile_key_prefix);
-        integer s1l = profile_key_prefix_length;
-        if(s1 == -1)
-        { // second try
-            s1 = llSubStringIndex(body, profile_img_prefix);
-            s1l = profile_img_prefix_length;
+        if (req == discordRequestID) {
+            discordRequestID = NULL_KEY;
+            if (status != 200 && status != 204) // Discord returns 204 No Content on success
+            {
+                llOwnerSay("Error sending to Discord. Status: " + (string)status);
+            }
         }
+        else if (req == profileRequestID) {
+            profileRequestID = NULL_KEY;
+            integer s1 = llSubStringIndex(body, profile_key_prefix);
+            integer s1l = profile_key_prefix_length;
+            if(s1 == -1)
+            { // second try
+                s1 = llSubStringIndex(body, profile_img_prefix);
+                s1l = profile_img_prefix_length;
+            }
 
-        if(s1 == -1)
-        { // still no match?
-            SetDefaultTextures();
-        }
-        else
-        {
-            s1 += s1l;
-            key UUID=llGetSubString(body, s1, s1 + 35);
-            if (UUID == NULL_KEY) {
+            if(s1 == -1)
+            { // still no match?
                 SetDefaultTextures();
             }
-            else {
-                llSetTexture(UUID, 0);
+            else
+            {
+                s1 += s1l;
+                key UUID=llGetSubString(body, s1, s1 + 35);
+                if (UUID == NULL_KEY) {
+                    SetDefaultTextures();
+                }
+                else {
+                    llSetTexture(UUID, 0);
+                }
             }
         }
     }

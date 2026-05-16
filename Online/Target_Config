@@ -3,23 +3,20 @@ END_SETTINGS
 #
 # Optional settings, uncomment & move above END_SETTINGS to enable
 #
-# DISCORD_URL can be set to a Discord channel Webhook URL to send online status to Discord
-# DISCORD_URL = https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# Set to a Discord channel Webhook URL to send online status to Discord [Default: disabled]
+# DISCORD_URL = https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #
-# DISCORD_USER can be set to a Discord user or Discord bot, messages will appear to be from this user
+# Messages will appear to be from this user [Default: Discord IM Online Tracker]
 # DISCORD_USER = Discord IM Online Tracker
 #
-# IM_OWNER can be used to enable or disable Instant Message notification to the owner
+# Enable or disable Instant Message notification to the owner [Default: TRUE]
 # IM_OWNER = TRUE
 #
-# HOVER_TEXT can be used to enable or disable display of hover text
-# HOVER_TEXT = TRUE
+# Enable or disable display of hover text [Default: FALSE]
+# HOVER_TEXT = FALSE
 #
-# TARGET_NAME can be used to override the displayed target name
+# Override the displayed target name [Default: use display name]
 # TARGET_NAME = Target Avatar Name
 #
-# CHECK_INTERVAL is the time in seconds between online status checks
+# Time in seconds between online status checks [Default: 120.0]
 # CHECK_INTERVAL = 120.0
-#
-# DEBUG turns on some debug output
-# DEBUG = FALSE

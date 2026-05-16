@@ -1,9 +1,23 @@
-// Discord IM Online Tracker - send an IM to the owner and/or post to Discord when the configured avatar logs on or off
-// Written 13-May-2026 by Missy Restless
+/////////// Discord IM Online Tracker \\\\\\\\\\\\\\
+//                                                //
+//   Sends an IM to the owner and/or posts a      //
+//   message to Discord when the configured       //
+//   Avatar logs on or logs off of Second Life    //
+////////////////////////////////////////////////////
+//
+////////////////////////////////////////////////////
+// Copyright (c) 2026 Truth & Beauty Lab          //
+// License: MIT                                   //
+// All rights reserved.                           //
+//                                                //
+// Author: Missy Restless missyrestless@gmail.com //
+////////////////////////////////////////////////////
 //
 // MODIFICATION HISTORY
 // --------------------
+// 13-May-2026 - Created by Missy Restless
 // 15-May-2026 - Add support for sending online status messages to a Discord channel
+// 16-May-2026 - Add setup instructions and prep for Marketplace
 //
 // UUID of the avatar to track
 key TargetUuid = NULL_KEY;
@@ -12,19 +26,20 @@ string TargetDisplayName = "";
 // How often to check in seconds (60s minimum recommended)
 float CheckInterval = 120.0; 
 // ---------------------
-// Default fallbacks if not set in configuration notecard
-key Default_Uuid = "3506213c-29c8-4aa1-a38f-e12f6d41b804";
+// Default fallback if not set in configuration notecard or owner
+key Default_Uuid = "094743dc-cb00-483f-9c35-99232e3a71f1";
 
 // Key for agent data requests
 key agentDataRequestID = NULL_KEY;
+// Key for agent data requests triggered by touch events
+key touchDataRequestID = NULL_KEY;
 // Keys for HTTP requests
 key discordRequestID = NULL_KEY;
 key profileRequestID = NULL_KEY;
 
 integer IsOnline = FALSE; // Assume offline initially
 integer GetDisplayName = TRUE;
-integer Debug = FALSE;
-integer HoverText = TRUE;
+integer HoverText = FALSE;
 integer NotecardLine;
 // Should online status be sent to owner as an Instant Message
 integer IMowner = TRUE;
@@ -35,7 +50,7 @@ string DiscordUser = "Discord IM Online Tracker";
 // The name of the configuration notecard
 string CONFIG_CARD = "Target_Config";
 key D_QueryID;
-key owner;
+key owner = NULL_KEY;
 key display_name_query;
 key name_query;
 
@@ -46,21 +61,6 @@ vector GRN = <0,1,0>;
 
 string profileURL;
 string webprofURL;
-string profile_key_prefix = "<meta name=\"imageid\" content=\"";
-string profile_img_prefix = "<img alt=\"profile image\" src=\"http://secondlife.com/app/image/";
-integer profile_key_prefix_length; // calculated from profile_key_prefix in state_entry()
-integer profile_img_prefix_length; // calculated from profile_key_prefix in state_entry()
-
-StatusUpdate() {
-    // Request online status data for the specified user key
-    if (Debug) {
-      llOwnerSay("Calling llRequestAgentData with TargetUuid = " + (string)TargetUuid);
-    }
-    agentDataRequestID = llRequestAgentData(TargetUuid, DATA_ONLINE);
-    if (Debug) {
-      llOwnerSay("Return from llRequestAgentData with agentDataRequestID = " + (string)agentDataRequestID);
-    }
-}
 
 GetProfilePic(key id) //Run the HTTP Request then set the texture
 {
@@ -102,17 +102,29 @@ profile_timer_init() {
         // Clear any previously set hover text
         llSetText("", <0,0,0>, 0.0);
     }
+    llSetObjectName(TargetDisplayName + " Online Tracker");
+    llSetObjectDesc("Sends an IM or Discord message when " + TargetDisplayName + " logs on or off");
     GetProfilePic(TargetUuid);
     // Start monitoring immediately
     llSetTimerEvent(CheckInterval);
     // Do an initial check immediately
-    StatusUpdate();
+    agentDataRequestID = llRequestAgentData(TargetUuid, DATA_ONLINE);
 }
 
 init_target() {
     SetDefaultTextures();
     if ((TargetUuid == NULL_KEY) || (TargetUuid == "target-avatar-uuid")) {
-        TargetUuid = Default_Uuid;
+        if (owner) {
+            TargetUuid = owner;
+        } else {
+            TargetUuid = Default_Uuid;
+        }
+    }
+    // Check if Target UUID is a valid key
+    if (TargetUuid) {
+        llOwnerSay("Discord IM Online Tracker initialization in progress");
+    } else {
+        llOwnerSay("ERROR: Invalid Target Avatar UUID " + (string)TargetUuid);
     }
     profileURL = "secondlife:///app/agent/" + (string)TargetUuid + "/about";
     name_query = llRequestUsername(TargetUuid);
@@ -142,61 +154,67 @@ sendToDiscord(string dm) {
 default
 {
     on_rez(integer param) {
-      llResetScript();
+        llResetScript();
     }
 
     state_entry()
     {
-      owner = llGetOwner();
-      profile_key_prefix_length = llStringLength(profile_key_prefix);
-      profile_img_prefix_length = llStringLength(profile_img_prefix);
-      if (llGetInventoryType(CONFIG_CARD) == INVENTORY_NOTECARD) {
-          NotecardLine = 0;
-          D_QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
-      }
-      else {
-          llOwnerSay("Configuration notecard missing, using defaults.");
-          init_target();
-      }
+        owner = llGetOwner();
+        if (llGetInventoryType(CONFIG_CARD) == INVENTORY_NOTECARD) {
+            NotecardLine = 0;
+            D_QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
+        }
+        else {
+            llOwnerSay("Configuration notecard missing, using defaults.");
+            init_target();
+        }
     }
 
     timer()
     {
-      // Periodically check status
-      StatusUpdate();
+        // Periodically check status
+        agentDataRequestID = llRequestAgentData(TargetUuid, DATA_ONLINE);
     }
 
     // Allows a touch to force an immediate update
     touch_start(integer num) {
-      // Check if the first person who touched is the owner
-      if (llDetectedKey(0) == owner)
-      {
-        if (HoverText) {
-          // Clears the hover text, sets color to black, and makes it 100% transparent
-          llSetText("", <0.0, 0.0, 0.0>, 0.0);
+        // Check if the first person who touched is the owner
+        if (llDetectedKey(0) == owner) {
+            if (HoverText) {
+                // Clears the hover text, sets color to black, and makes it 100% transparent
+                llSetText("", <0.0, 0.0, 0.0>, 0.0);
+            }
+            HoverText = !HoverText;
+            touchDataRequestID = llRequestAgentData(TargetUuid, DATA_ONLINE);
         }
-        HoverText = !HoverText;
-        llOwnerSay("Tracking " + profileURL + " online status");
-        StatusUpdate();
-      }
     }
 
     dataserver(key queryid, string data)
     {
-        if (queryid == agentDataRequestID)
-        {
-            integer CurrentlyOnline;
+        integer CurrentlyOnline;
+        // Requested data contains the string "0" or "1" for DATA_ONLINE
+        // Convert it to an integer and use the boolean as index
+        // list index = [   0,       1,     2(0+2), 3(1+2)  ]
+        list stat_cols = ["OFFLINE","ONLINE",RED,GRN];
+        string status_pre = TargetDisplayName + " is now ";
+        string status_msg = "";
 
-            // Requested data contains the string "0" or "1" for DATA_ONLINE
-            // Convert it to an integer and use the boolean as index
-            // list index = [   0,       1,     2(0+2), 3(1+2)  ]
-            list stat_cols = ["OFFLINE","ONLINE",RED,GRN];
-
+        if (queryid == touchDataRequestID) {
             CurrentlyOnline = (integer)data;
-            if (Debug) {
-              llOwnerSay("In dataserver with CurrentlyOnline = " + (string)CurrentlyOnline);
-              llOwnerSay("IsOnline = " + (string)IsOnline);
+            // Local chat online status to owner on touch
+            if (CurrentlyOnline) {
+                status_pre = status_pre + "ONLINE. Click to view profile: ";
+                status_msg = status_pre + profileURL;
+                llOwnerSay(status_msg);
+            } else {
+                status_msg = status_pre + "OFFLINE.";
+                llOwnerSay(status_msg);
             }
+            // Update status
+            IsOnline = CurrentlyOnline;
+        }
+        else if (queryid == agentDataRequestID) {
+            CurrentlyOnline = (integer)data;
 
             string status_pre = TargetDisplayName + " is now ";
             string status_msg = "";
@@ -206,13 +224,11 @@ default
             SetSideTextures(color);
 
             // IM if status has changed
-            if (CurrentlyOnline)
-            {
-                if (!IsOnline)
-                {
+            if (CurrentlyOnline) {
+                if (!IsOnline) {
                     status_pre = status_pre + "ONLINE. Click to view profile: ";
                     status_msg = status_pre + profileURL;
-                    if !(DiscordRelay || IMowner) {
+                    if (!(DiscordRelay || IMowner)) {
                         llOwnerSay(status_msg);
                     } else {
                         if (IMowner) {
@@ -225,12 +241,10 @@ default
                     }
                 }
             }
-            else
-            {
-                if (IsOnline)
-                {
+            else {
+                if (IsOnline) {
                     status_msg = status_pre + "OFFLINE.";
-                    if !(DiscordRelay || IMowner) {
+                    if (!(DiscordRelay || IMowner)) {
                         llOwnerSay(status_msg);
                     } else {
                         if (IMowner) {
@@ -244,17 +258,13 @@ default
             }
             // Set hover text
             if (HoverText) {
-              if (Debug) {
-                llOwnerSay("Setting hover text with status = " + stats);
-              }
               llSetText(TargetDisplayName + "\nStatus: " + stats, color, 1.0); // Update hover text and color
             }
 
             // Update status
             IsOnline = CurrentlyOnline;
         }
-        else if (queryid == D_QueryID)
-        {
+        else if (queryid == D_QueryID) {
             string name;
             string value;
             list temp;
@@ -286,30 +296,25 @@ default
                         DiscordUser = value;
                     } else if ( name == "IM_OWNER" ) {
                         IMowner = (integer)value; 
-                    } else if ( name == "DEBUG" ) {
-                        Debug = (integer)value; 
                     }
                 }
                 NotecardLine++;
                 D_QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
             }
         }
-        else if (display_name_query == queryid)
-        {
+        else if (display_name_query == queryid) {
             TargetDisplayName = data;
             llOwnerSay("Tracking " + profileURL + " online status");
             profile_timer_init();
         }
-        else if ( name_query == queryid )
-        {
+        else if ( name_query == queryid ) {
             webprofURL = "https://my.secondlife.com/" + data; 
         }
     }
 
     changed(integer change)
     {
-         if (change & (CHANGED_OWNER | CHANGED_INVENTORY))
-         {
+         if (change & (CHANGED_OWNER | CHANGED_INVENTORY)) {
              llResetScript();
          }
     }
@@ -324,23 +329,23 @@ default
             }
         }
         else if (req == profileRequestID) {
-            profileRequestID = NULL_KEY;
-            integer s1 = llSubStringIndex(body, profile_key_prefix);
-            integer s1l = profile_key_prefix_length;
-            if(s1 == -1)
-            { // second try
-                s1 = llSubStringIndex(body, profile_img_prefix);
-                s1l = profile_img_prefix_length;
+            string profile_key_prefix = "<meta name=\"imageid\" content=\"";
+            string profile_img_prefix = "<img alt=\"profile image\" src=\"http://secondlife.com/app/image/";
+
+            integer pre_ind = llSubStringIndex(body, profile_key_prefix);
+            integer pre_len = llStringLength(profile_key_prefix);
+
+            if (pre_ind == -1) {   // Second try
+                pre_ind = llSubStringIndex(body, profile_img_prefix);
+                pre_len = llStringLength(profile_img_prefix);
             }
 
-            if(s1 == -1)
-            { // still no match?
+            if (pre_ind == -1) {   // Still no match?
                 SetDefaultTextures();
             }
-            else
-            {
-                s1 += s1l;
-                key UUID=llGetSubString(body, s1, s1 + 35);
+            else {
+                pre_ind += pre_len;
+                key UUID=llGetSubString(body, pre_ind, pre_ind + 35);
                 if (UUID == NULL_KEY) {
                     SetDefaultTextures();
                 }
@@ -348,6 +353,7 @@ default
                     llSetTexture(UUID, 0);
                 }
             }
+            profileRequestID = NULL_KEY;
         }
     }
 }

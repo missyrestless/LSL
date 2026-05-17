@@ -7,7 +7,7 @@
 //
 ////////////////////////////////////////////////////
 // Copyright (c) 2026 Truth & Beauty Lab          //
-// License: MIT                                   //
+// License: GPLv3                                   //
 // All rights reserved.                           //
 //                                                //
 // Author: Missy Restless missyrestless@gmail.com //
@@ -18,10 +18,12 @@
 // 13-May-2026 - Created by Missy Restless
 // 15-May-2026 - Add support for sending online status messages to a Discord channel
 // 16-May-2026 - Add setup instructions and prep for Marketplace
+// 17-May-2026 - Use embeds objects for Discord postings
 //
 // UUID of the avatar to track
 key TargetUuid = NULL_KEY;
 // Name of the avatar to track
+string TargetName = "";
 string TargetDisplayName = "";
 // How often to check in seconds (60s minimum recommended)
 float CheckInterval = 120.0; 
@@ -36,6 +38,10 @@ key touchDataRequestID = NULL_KEY;
 // Keys for HTTP requests
 key discordRequestID = NULL_KEY;
 key profileRequestID = NULL_KEY;
+
+// Used to calculate time between login/logout
+integer lastLogoff = 0;
+integer lastLogin = 0;
 
 integer IsOnline = FALSE; // Assume offline initially
 integer GetDisplayName = TRUE;
@@ -138,21 +144,111 @@ init_target() {
     }
 }
 
+// Input number of seconds, return a string with Days, Hours, Minutes, Seconds
+string getElapsedTime(integer secs)
+{
+    string timeStr;
+    integer days;
+    integer hours;
+    integer minutes;
+ 
+    if (secs>=86400)
+    {
+        days=llFloor(secs/86400);
+        secs=secs%86400;
+        timeStr+=(string)days+" day";
+        if (days>1) 
+        {
+            timeStr+="s";
+        }
+        if(secs>0) 
+        {
+            timeStr+=", ";
+        }
+    }
+    if(secs>=3600)
+    {
+        hours=llFloor(secs/3600);
+        secs=secs%3600;
+        timeStr+=(string)hours+" hour";
+        if(hours!=1)
+        {
+            timeStr+="s";
+        }
+        if(secs>0)
+        {
+            timeStr+=", ";
+        }
+    }
+    if(secs>=60)
+    {
+        minutes=llFloor(secs/60);
+        secs=secs%60;
+        timeStr+=(string)minutes+" minute";
+        if(minutes!=1)
+        {
+            timeStr+="s";
+        }
+        if(secs>0)
+        {
+            timeStr+=", ";
+        }
+    }
+    if (secs>0)
+    {
+        timeStr+=(string)secs+" second";
+        if(secs!=1)
+        {
+            timeStr+="s";
+        }
+    }
+    return timeStr;
+}
+
 // Function to send the message to Discord
-sendToDiscord(string dm) {
-    string jsonPayload = 
-        "{ \"username\": \"Online Tracker\", \"embeds\": [ { " +
-                "\"title\": \"" + TargetDisplayName + "\", " +
-                "\"url\": \"" + webprofURL + "\", " +
-                "\"description\": \"" + dm + "\", " +
-                "\"color\": \"" + D_COL + "\"" +
-                " } ] }";
+// dm is message to send, et is elapsed time since last login/logoff
+sendToDiscord(string dm, string et) {
+    string aviURL = "https://my-secondlife-agni.akamaized.net/users/";
+    string timUTC = llGetTimestamp();
+    // Can use LSL lists
+    // list json    = [ 
+    //     "avatar_url",  aviURL + TargetName + "/thumb_sl_image.png",
+    //     "username", "Online Tracker",
+    //     "embeds", 
+    //         llList2Json(JSON_ARRAY,
+    //         [
+    //         llList2Json(JSON_OBJECT,
+    //             [
+    //                 "title", TargetDisplayName,
+    //                 "url", webprofURL,
+    //                 "description",  dm,
+    //                 "color", (integer)D_COL,
+    //             ])
+    //          ])
+    // ];
+    // Then convert the list to JSON and pass it in the request:
+    //    llList2Json(JSON_OBJECT, json) );
+    //
+    // Or just straight up JSON, faster but less readable
+    string json = "{ \"avatar_url\": \"" + aviURL + TargetName + "/thumb_sl_image.png\", " +
+                    "\"username\": \"Online Tracker\", \"embeds\": [ { " +
+                    "\"title\": \"" + TargetDisplayName + "\", " +
+                    "\"url\": \"" + webprofURL + "\", " +
+                    "\"description\": \"" + dm + "\", " +
+                    "\"color\": \"" + D_COL + "\", " +
+                    "\"timestamp\": \"" + timUTC + "\", " +
+                    "\"footer\": { \"text\": \"" + et + "\", " +
+                        "\"icon_url\": \"https://slbotcontrol.github.io/assets/second-life.png\" }" +
+             " } ] }";
 
     // Make the HTTP request to the Discord Webhook
     discordRequestID = llHTTPRequest(Discord_URL, [
         HTTP_METHOD, "POST", 
-        HTTP_MIMETYPE, "application/json"
-    ], jsonPayload);
+        HTTP_MIMETYPE, "application/json",
+        HTTP_VERIFY_CERT,      TRUE,
+        HTTP_VERBOSE_THROTTLE, TRUE,
+        HTTP_PRAGMA_NO_CACHE,  TRUE
+    ], json);
 }
 
 default
@@ -164,6 +260,8 @@ default
     state_entry()
     {
         owner = llGetOwner();
+        lastLogoff = 0;
+        lastLogin = 0;
         if (llGetInventoryType(CONFIG_CARD) == INVENTORY_NOTECARD) {
             NotecardLine = 0;
             D_QueryID = llGetNotecardLine( CONFIG_CARD, NotecardLine );
@@ -220,6 +318,7 @@ default
         else if (queryid == agentDataRequestID) {
             CurrentlyOnline = (integer)data;
 
+            string elapsedTimeStr;
             string status_pre = TargetDisplayName + " is now ";
             string status_msg = "";
             // Set hover text status and color
@@ -232,6 +331,14 @@ default
                 if (!IsOnline) {
                     status_pre = status_pre + "ONLINE. Click to view profile: ";
                     status_msg = status_pre + profileURL;
+                    lastLogin = llGetUnixTime();
+                    if (lastLogoff <= 0) {
+                        // No record of last login
+                        elapsedTimeStr = "Unknown";
+                    } else {
+                        elapsedTimeStr = getElapsedTime(lastLogin - lastLogoff);
+                        status_msg = status_msg + "\n(Offline for " + elapsedTimeStr + ")";
+                    }
                     if (!(DiscordRelay || IMowner)) {
                         llOwnerSay(status_msg);
                     } else {
@@ -239,9 +346,9 @@ default
                             llInstantMessage(owner, status_msg);
                         }
                         if (DiscordRelay) {
-                            status_msg = status_pre + "[" + TargetDisplayName + "](" + webprofURL + ")";
+                            status_msg = TargetDisplayName + " is now **ONLINE**";
                             D_COL = D_GRN;
-                            sendToDiscord(status_msg);
+                            sendToDiscord(status_msg, "Offline for " + elapsedTimeStr);
                         }
                     }
                 }
@@ -249,6 +356,13 @@ default
             else {
                 if (IsOnline) {
                     status_msg = status_pre + "OFFLINE.";
+                    lastLogoff = llGetUnixTime();
+                    if (lastLogin <= 0) {
+                        // No record of last login
+                        elapsedTimeStr = "Unknown";
+                    } else {
+                        elapsedTimeStr = getElapsedTime(lastLogoff - lastLogin);
+                    }
                     if (!(DiscordRelay || IMowner)) {
                         llOwnerSay(status_msg);
                     } else {
@@ -256,8 +370,9 @@ default
                             llInstantMessage(owner, status_msg);
                         }
                         if (DiscordRelay) {
+                            status_msg = status_pre + "**OFFLINE**";
                             D_COL = D_RED;
-                            sendToDiscord(status_msg);
+                            sendToDiscord(status_msg, "Online for " + elapsedTimeStr);
                         }
                     }
                 }
@@ -312,6 +427,7 @@ default
             profile_timer_init();
         }
         else if ( name_query == queryid ) {
+            TargetName = data;
             webprofURL = "https://my.secondlife.com/" + data; 
         }
     }

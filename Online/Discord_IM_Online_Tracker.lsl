@@ -46,7 +46,6 @@ integer IMowner = TRUE;
 // Should online status be broadcast to a Discord channel
 integer DiscordRelay = FALSE;
 string Discord_URL = "";
-string DiscordUser = "Discord IM Online Tracker";
 // The name of the configuration notecard
 string CONFIG_CARD = "Target_Config";
 key D_QueryID;
@@ -56,6 +55,9 @@ key name_query;
 
 // Built-in white texture UUID
 string WHT_UUID = "5748decc-f629-461c-9a36-a35a221fe21f";
+string D_COL;
+string D_RED = "16711680";
+string D_GRN = "65280";
 vector RED = <1,0,0>;
 vector GRN = <0,1,0>;
 
@@ -138,17 +140,19 @@ init_target() {
 
 // Function to send the message to Discord
 sendToDiscord(string dm) {
-    // Create the JSON payload
-    string json = llList2Json(JSON_OBJECT, [
-        "username", DiscordUser, 
-        "content", dm
-    ]);
+    string jsonPayload = 
+        "{ \"username\": \"Online Tracker\", \"embeds\": [ { " +
+                "\"title\": \"" + TargetDisplayName + "\", " +
+                "\"url\": \"" + webprofURL + "\", " +
+                "\"description\": \"" + dm + "\", " +
+                "\"color\": \"" + D_COL + "\"" +
+                " } ] }";
 
     // Make the HTTP request to the Discord Webhook
     discordRequestID = llHTTPRequest(Discord_URL, [
         HTTP_METHOD, "POST", 
         HTTP_MIMETYPE, "application/json"
-    ], json);
+    ], jsonPayload);
 }
 
 default
@@ -236,6 +240,7 @@ default
                         }
                         if (DiscordRelay) {
                             status_msg = status_pre + "[" + TargetDisplayName + "](" + webprofURL + ")";
+                            D_COL = D_GRN;
                             sendToDiscord(status_msg);
                         }
                     }
@@ -251,6 +256,7 @@ default
                             llInstantMessage(owner, status_msg);
                         }
                         if (DiscordRelay) {
+                            D_COL = D_RED;
                             sendToDiscord(status_msg);
                         }
                     }
@@ -292,8 +298,6 @@ default
                     } else if ( name == "DISCORD_URL" ) {
                         Discord_URL = value;
                         DiscordRelay = TRUE;
-                    } else if ( name == "DISCORD_USER" ) {
-                        DiscordUser = value;
                     } else if ( name == "IM_OWNER" ) {
                         IMowner = (integer)value; 
                     }

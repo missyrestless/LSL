@@ -1,0 +1,25 @@
+# Asia Licious playlists for SimCaster Easy Streaming TV and Spherical Theater
+#
+# Contributions by Asia Licious & Missy Restless
+#
+# Format:
+# Button Name|Youtube Video Name|YourTubeURL
+# Example format:
+# Immersive Experience | Immersive Experience - Mecca of Ancient Astronomy | https://youtu.be/oDP3arqFj7c
+Faves | Favoroite Songs | https://youtube.com/playlist?list=PLmWDnAO6CBP4P3szgvCsJbK5kxnG_gXra&si=KQAhQzKHF0H3eGQs
+Island | Island Music | https://youtube.com/playlist?list=PLmWDnAO6CBP4XxWMecdCMY8Glo5T_SRrR&si=7WXIlE9QNq1d4DnM
+Cyberpunk | Cyberpunk Backgrounds | https://youtube.com/playlist?list=PLmWDnAO6CBP6_9LBA6Od1LDD7ND9j8U4r&si=dI_z35HC4v4EtEZ9
+Beabadoobe | Beabadoobe Songs | https://youtube.com/playlist?list=PLmWDnAO6CBP5lirEzQ6kYy-nQ8AcRgdZh&si=siWnJgVL-z2ggMuk
+Political | Political | https://youtube.com/playlist?list=PLmWDnAO6CBP6xVS4WlyHCL-pt5lhcRUFI&si=b2B5CfYqhYzGjro3
+Bass Love | Bass Love | https://youtube.com/playlist?list=PLmWDnAO6CBP7SfpTt0gYaF59zdYNmAkmW&si=T2ND4Nqg5DgE32Y-
+Girls | Girls Who Love Girls | https://youtube.com/playlist?list=PLmWDnAO6CBP7bFbCAWc1xwx1jzVC5lw10&si=NLXNMkXK_96maebX
+Spacey | Not Kevin | https://youtube.com/playlist?list=PLmWDnAO6CBP45yUpaeYoLCgi6DBONyZzy&si=_VDnlWes76SXXdbN
+Happy | Happy Music | https://youtube.com/playlist?list=PLmWDnAO6CBP4Bl-HDmKR6U4WLampoTf0k&si=BvuICdZyYg0h_DKf
+Women | Awesome Women | https://youtube.com/playlist?list=PLmWDnAO6CBP7Hh7Mv9uR3BAb6OQMtYp6e&si=PRqqhD0X7I1eRcw1
+Love | Love Songs | https://youtube.com/playlist?list=PLmWDnAO6CBP4DMKu2Ey93JriGHn4nWSOc&si=4nhIOd1IVVmkTsOy
+Dance | Dance Music | https://youtube.com/playlist?list=PLmWDnAO6CBP7OLaG-DdFBzCGMdOmOnot1&si=tJBnKf8Yh_KJRNpj
+Sensual | Sensual | https://youtube.com/playlist?list=PLmWDnAO6CBP6Q1wGhTYjHmDIhPgzoRT4u&si=Z_aC7aznu4KF8fxW
+Relax | Relax and Heal | https://youtube.com/playlist?list=PLmWDnAO6CBP46HMRDIF0ERABIc7bhrBAZ&si=dJLHoE5FASlz7csY
+Asian | Asian Artists | https://youtube.com/playlist?list=PLmWDnAO6CBP4f-w4rnS2lZ1rn3YXYzFl_&si=v4Tcg9HNDk1HQnfg
+Guyz | Guyz | https://youtube.com/playlist?list=PLmWDnAO6CBP7zP_N7CpOsBq-YgXH2JH-F&si=MF_XWvo7yJhQGx__
+Girl Singers | Girl Singers | https://youtube.com/playlist?list=PLmWDnAO6CBP4zbGTivZlH_cS_Xqnx3yM9&si=YxHoS80NQc2ABtuH

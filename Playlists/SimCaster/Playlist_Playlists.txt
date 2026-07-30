@@ -7,6 +7,7 @@
 # Example format:
 # Immersive Experience | Immersive Experience - Mecca of Ancient Astronomy | https://youtu.be/oDP3arqFj7c
 ABBA | ABBA | https://youtube.com/playlist?list=PLh3A0cnoWYsxsN-N7ZIXusvHnUm7J89c8&si=-GBP6MNYxz7cwsG9
+Aether Elf | Aether Elf | https://youtube.com/playlist?list=PLJg0-5MfDLk0&si=fhSnb-P4_fBPHow0
 Animation | Animation | https://youtube.com/playlist?list=PLh3A0cnoWYswDXQzIV_OlAoI1a-mFfuXw&si=i5KBHFkTBUvGey1k
 BABYMETAL | BABYMETAL | https://youtube.com/playlist?list=PLh3A0cnoWYszqUEL3AH0J9F4aIOTi4DAl&si=T9O13Hnf4l7C7zn3
 Bad Religion | Bad Religion | https://www.youtube.com/watch?v=v-D-fn-Z04w&list=PLn3jR-qEn33IN2FRuVGRbEQfud45Dq6Th
@@ -23,9 +24,6 @@ The Coral | The Coral | https://youtube.com/playlist?list=PLh3A0cnoWYsyTiT0OJsn5
 ELO | ELO | https://youtube.com/playlist?list=PLh3A0cnoWYsyb3QOvDf5Ui_xQSBVWs5Vs&si=qKhmOR2WTshU54TS
 EV Warning | Evanescence & The Warning | https://youtube.com/playlist?list=PLh3A0cnoWYszb7E_AKH6BO8TgH4uegVMi&si=LczOgWQPrZV4kORE
 FJM | Father John Misty | https://youtube.com/playlist?list=PLh3A0cnoWYsyG8eTS9UWMWmy-E8XHcqii&si=niMWqG-CW7B67hcw
-Fractals | Fractals | https://youtube.com/playlist?list=PLh3A0cnoWYsw8DjTSanMAcmOhcoxqPyNx&si=lW-3deEd7bJkHDZD
-Fun Cool | Fun Cool Hot | https://youtube.com/playlist?list=PL5CD94AE42038A7B7&si=nrCaBKVPXkWAYNz5
-Funny | Funny Videos | https://youtube.com/playlist?list=PL18EB12D7FC58EBD8&si=aBYwCLLu_FqdASc8
 Girls | Girls | https://youtube.com/playlist?list=PLeUc4oWn7RNkC93HQVLFq0k49d6UhYtOZ&si=-Rz-7aigkaF2TDdX
 Girls More | More Girls | https://youtube.com/playlist?list=PL3CA8BE05FE05D7BC&si=JkCgMJb8EpTWfoSQ
 Gorillaz | Gorillaz | https://youtube.com/playlist?list=PLh3A0cnoWYsxIjrBQu-a30mi7MdzkjPwO&si=CDsZJvTIECdC5VNE
@@ -52,9 +50,6 @@ Rufus Wainwright | Rufus Wainwright | https://youtube.com/playlist?list=PLh3A0cn
 Sean Lennon | Sean Lennon - selections from Friendly Fire | https://youtube.com/playlist?list=FL-Rx3CLvNzwzn9khD2hSRFQ&si=MPIadK4W7aTq7OSh
 SOFI TUKKER | SOFI TUKKER | https://youtube.com/playlist?list=PLh3A0cnoWYsynpR9bhDtDzpd8iYRXZulp&si=ew8wH1vb52fPvOqN
 DJ SOFI TUKKER | SOFI TUCKER Live DJ Sets | https://youtube.com/playlist?list=PLeUc4oWn7RNn1AJIhr_xjvGUS7yWXIDfI&si=N9BDNkMW9oukKNap
-Star Trek | Star Trek AI parodies | https://youtube.com/playlist?list=PLeUc4oWn7RNkssq26vHvrhyOJBWpqk_fe&si=mEoHjZysNYqYUbty
 Trance | Trance | https://youtube.com/playlist?list=PL6DAF152F352A8561&si=LJt0X1vsN4xD2cCh
-TV Series | TV Series Opening Titles | https://youtube.com/playlist?list=PLh3A0cnoWYsyh-2l1bEJlFIzl_5gtlcwZ&si=iRhMvCWHs3Vl82HF
 Ween | Ween | https://youtube.com/playlist?list=PLFB0C446AD473FC86&si=rSE_jS90jJZpafpG
 Weyes Blood | Weyes Blood | https://youtube.com/playlist?list=PLh3A0cnoWYswpP_E34uPOf88zz-QPmaUg&si=cUPzkGI0KkPsHE67
-Wow | Wow | https://youtube.com/playlist?list=PL0EBA8D0577378A9A&si=wGsbKwCSYOXxgRsA

@@ -12,8 +12,9 @@ You can copy, modify, transfer, and sell these scripts.
 * `Speak`: simple voice system for SL
 * `Utils`: LSL script utilities
 * `Playlists`: SL playlists
-* `firestorm.sh`: Bash script to front-end the Firestorm startup script on Mac and Linux
-* `view_chat.sh`: Bash script to view/search Firestorm chat and teleport logs on Mac and Linux
+
+**[Note:]** the `firestorm` and `view_chat` command line utilities have moved to the
+[SL_Bash](https://github.com/missyrestless/SL_Bash) repository.
 
 The `Corrade` scripts for use with the Corrade scripted agent system
 has been moved to its own repository at:

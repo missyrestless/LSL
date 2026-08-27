@@ -1,10 +1,19 @@
+// ZHAO AO INTERFACE
+// Written 27-Aug-2026 by Missy Restless <missyrestless@gmail.com>
+//
+// Drop this script into a ZHAO based AO to enable remote command controls
+// Use the accompanying gestures to issue commands to the ZHAO AO
+//
+// For example, to enable the AO, owner can type /aoon in local chat.
+// To disable the AO, owner can type /aooff in local chat.
+//
 // The Vista animation overriders in Second Life are based on the ZHAO-II engine
 // (by Ziggy Puff, mod by Marcus Gray, Johann Ehrler and Moeka Kohime) and the
 // Vista AOs that were tested contain the ZHAO-II-core MGJEmod 1.1.9 script.
 //
 // Even though the Vista animation creator does not disclose the GPLv2 source,
 // the header of the ZHAO-II-core MGJEmod 1.1.9 script mentions the following:
-
+//
 // ZHAO-II-core - Ziggy Puff, 07/07
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,6 +50,90 @@
 // So, to send a command to the ZHAO-II engine, send a linked message:
 //
 //   llMessageLinked(LINK_SET, 0, "ZHAO_AOON", NULL_KEY);
-//
-// This script uses a listener on channel -91234. If other scripts are added to the ZHAO, make sure 
-// they don't use the same channel
+
+default
+{
+    state_entry() {
+        llListen(0, "", llGetOwner(), "");
+    }
+ 
+    listen(integer channel, string name, key id, string message) {
+        string cmd = llToLower(message);
+        if (cmd == "aoon") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_AOON", NULL_KEY);
+            return;
+        } else if (cmd == "aooff") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_AOOFF", NULL_KEY);
+            return;
+        } else if (cmd == "aorandomstands") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_RANDOMSTANDS", NULL_KEY);
+            return;
+        } else if (cmd == "aosequentialstands") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_SEQUENTIALSTANDS", NULL_KEY);
+            return;
+        } else if (cmd == "aositon") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_SITON", NULL_KEY);
+            return;
+        } else if (cmd == "aositoff") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_SITOFF", NULL_KEY);
+            return;
+        } else if (cmd == "aonextstand") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_NEXTSTAND", NULL_KEY);
+            return;
+        } else if (cmd == "aoreset") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_RESET", NULL_KEY);
+            return;
+        } else if (cmd == "aosettings") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_SETTINGS", NULL_KEY);
+            return;
+        } else if (cmd == "aosits") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_SITS", NULL_KEY);
+            return;
+        } else if (cmd == "aogroundsits") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_GROUNDSITS", NULL_KEY);
+            return;
+        } else if (cmd == "aowalks") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_WALKS", NULL_KEY);
+            return;
+        } else if (cmd == "aositanywhere_on") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_SITANYWHERE_ON", NULL_KEY);
+            return;
+        } else if (cmd == "aositanywhere_off") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_SITANYWHERE_OFF", NULL_KEY);
+            return;
+        } else if (cmd == "aotype_on") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_TYPE_ON", NULL_KEY);
+            return;
+        } else if (cmd == "aotype_off") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_TYPE_OFF", NULL_KEY);
+            return;
+        } else if (cmd == "aotypekill_on") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_TYPEKILL_ON", NULL_KEY);
+            return;
+        } else if (cmd == "aotypekill_off") {
+            llMessageLinked(LINK_SET, 0, "ZHAO_TYPEKILL_OFF", NULL_KEY);
+            return;
+        } else if (llSubStringIndex(cmd, "aoload ") == 0) {
+            list notename = llParseString2List(cmd, [" "], []);
+            // Delete the very first element (index 0) from the list
+            notename = llDeleteSubList(notename, 0, 0);
+            // Join the remaining words back together with a space
+            llMessageLinked(LINK_SET, 0, "ZHAO_LOAD|" + llDumpList2String(notename, " "), NULL_KEY);
+            return;
+        } else if (cmd == "aostandtime") {
+            list time = llParseString2List(cmd, [" "], []);
+            // Delete the very first element (index 0) from the list
+            time = llDeleteSubList(time, 0, 0);
+            // Join the remaining words back together with a space
+            llMessageLinked(LINK_SET, 0, "ZHAO_STANDTIME|" + llDumpList2String(time, " "), NULL_KEY);
+            return;
+    }
+ 
+    on_rez(integer num) {
+        llResetScript();
+    }
+ 
+    changed(integer channel) {
+        llResetScript();
+    }
+}

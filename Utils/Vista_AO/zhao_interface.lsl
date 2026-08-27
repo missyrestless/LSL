@@ -1,11 +1,13 @@
 // ZHAO AO INTERFACE
+//
 // Written 27-Aug-2026 by Missy Restless <missyrestless@gmail.com>
 //
 // Drop this script into a ZHAO based AO to enable remote command controls
 // Use the accompanying gestures to issue commands to the ZHAO AO
 //
-// For example, to enable the AO, owner can type /aoon in local chat.
-// To disable the AO, owner can type /aooff in local chat.
+// For example, once the gestures are activated, to enable the AO,
+// the owner can type /aoon in local chat. To disable the AO, owner
+// can type /aooff in local chat.
 //
 // The Vista animation overriders in Second Life are based on the ZHAO-II engine
 // (by Ziggy Puff, mod by Marcus Gray, Johann Ehrler and Moeka Kohime) and the
@@ -54,7 +56,7 @@
 default
 {
     state_entry() {
-        llListen(0, "", llGetOwner(), "");
+        llListen(935840, "", llGetOwner(), "");
     }
  
     listen(integer channel, string name, key id, string message) {
@@ -127,6 +129,7 @@ default
             // Join the remaining words back together with a space
             llMessageLinked(LINK_SET, 0, "ZHAO_STANDTIME|" + llDumpList2String(time, " "), NULL_KEY);
             return;
+        }
     }
  
     on_rez(integer num) {

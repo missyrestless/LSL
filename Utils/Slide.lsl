@@ -1,7 +1,12 @@
 // Smoothly slide an object the length of itself along its local X-axis
+//
 // Written 05-October-2026 by Missy Restless <missyrestless@gmail.com>
+//
+// Sets the physics shape of the object to Convex Hull
+// Sets object to phantom during movement
 
-integer Moved = FALSE; // Track toggle state
+integer moved   = FALSE; // Track toggle state
+integer phantom = FALSE;
 float   distance;
 vector  size;
 
@@ -12,28 +17,33 @@ default {
         size = llGetScale();
         // Define the distance to move (using the X dimension of its size)
         distance = size.x;
+        phantom  = llGetStatus(STATUS_PHANTOM);
     }
 
     touch_start(integer total_number) {
         // If already moved, reverse the direction
-        if (Moved) {
+        if (moved) {
             distance = -distance;
         }
         
-        // 3. Calculate the local translation vector
+        // Calculate the local translation vector
         vector local_offset = <distance, 0.0, 0.0>;
         
-        // 4. Convert local offset to global coordinates based on current rotation
+        // Convert local offset to global coordinates based on current rotation
         vector global_offset = local_offset * llGetRot();
         
-        // 5. Define the movement keyframe: [offset vector, rotation, duration in seconds]
+        // Define the movement keyframe: [offset vector, rotation, duration in seconds]
         float duration = 1.0; // Adjust this number to make it slide faster or slower
         list keyframe = [global_offset, ZERO_ROTATION, duration];
         
-        // 6. Trigger the smooth motion
+        llSetStatus(STATUS_PHANTOM, TRUE);
+
+        // Trigger the smooth motion
         llSetKeyframedMotion(keyframe, []);
         
         // Toggle the state tracker
-        Moved = !Moved;
+        moved = !moved;
+        
+        llSetStatus(STATUS_PHANTOM, phantom);
     }
 }

@@ -2,15 +2,19 @@
 // Written 05-October-2026 by Missy Restless <missyrestless@gmail.com>
 
 integer Moved = FALSE; // Track toggle state
+float   distance;
+vector  size;
 
 default {
+    state_entry() {
+        llSetLinkPrimitiveParamsFast(LINK_THIS, [PRIM_PHYSICS_SHAPE_TYPE, PRIM_PHYSICS_SHAPE_CONVEX]);
+        // Get the object's size (length)
+        size = llGetScale();
+        // Define the distance to move (using the X dimension of its size)
+        distance = size.x;
+    }
+
     touch_start(integer total_number) {
-        // 1. Get the object's size (length)
-        vector size = llGetScale();
-        
-        // 2. Define the distance to move (using the X dimension of its size)
-        float distance = size.x;
-        
         // If already moved, reverse the direction
         if (Moved) {
             distance = -distance;
